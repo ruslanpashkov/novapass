@@ -35,8 +35,8 @@ export const useThemeStore = create<ThemeStore>()(
        */
       syncWithSystem: () => {
         // Update theme to match current system preference
-        set((state) =>
-          ThemeService.updateTheme(state, ThemeService.getSystemTheme(), true),
+        set(() =>
+          ThemeService.updateTheme(ThemeService.getSystemTheme(), true),
         );
 
         // Set up listener for system theme changes
@@ -51,19 +51,19 @@ export const useThemeStore = create<ThemeStore>()(
       },
 
       /**
-       * Sets the theme to a specific value
-       * @param theme - Theme to set (usually 'light' or 'dark')
-       */
-      setTheme: (theme) => {
-        set((state) => ThemeService.setTheme(state, theme));
-      },
-
-      /**
        * Toggles between light and dark theme
        * If system theme is enabled, this will disable it
        */
       toggleTheme: () => {
         set((state) => ThemeService.toggleTheme(state));
+      },
+
+      /**
+       * Sets the theme to a specific value
+       * @param theme - Theme to set (usually 'light' or 'dark')
+       */
+      setTheme: (theme) => {
+        set(() => ThemeService.setTheme(theme));
       },
     }),
     {

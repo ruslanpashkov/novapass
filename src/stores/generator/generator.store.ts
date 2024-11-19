@@ -66,7 +66,7 @@ export const useGeneratorStore = create<GeneratorStore>()(
        * @param value - Password or passphrase to set
        */
       setPassword: (value) => {
-        set((state) => GeneratorService.setPassword(state, value));
+        set(() => GeneratorService.setPassword(value));
       },
 
       /**
@@ -74,7 +74,7 @@ export const useGeneratorStore = create<GeneratorStore>()(
        * @param mode - Mode to set ('password' or 'passphrase')
        */
       setMode: (mode) => {
-        set((state) => GeneratorService.setMode(state, mode));
+        set(() => GeneratorService.setMode(mode));
       },
     }),
     {

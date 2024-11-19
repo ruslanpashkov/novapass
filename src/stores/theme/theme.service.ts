@@ -49,12 +49,26 @@ export class ThemeService {
    * @param state - Current theme state
    * @returns Updated state if system theme is enabled, null otherwise
    */
-  static handleSystemThemeChange(state: ThemeState): ThemeState | null {
+  static handleSystemThemeChange(
+    state: ThemeState,
+  ): Partial<ThemeState> | null {
     if (!state.isSystemTheme) {
       return null;
     }
 
-    return this.updateTheme(state, this.getSystemTheme(), true);
+    return this.updateTheme(this.getSystemTheme(), true);
+  }
+
+  /**
+   * Toggles between light and dark themes
+   * Automatically disables system theme sync
+   * @param state - Current theme state
+   * @returns Updated theme state with toggled theme
+   */
+  static toggleTheme(state: ThemeState): Partial<ThemeState> {
+    const nextTheme = this.getNextTheme(state.theme);
+
+    return this.updateTheme(nextTheme, false);
   }
 
   /**
@@ -64,28 +78,11 @@ export class ThemeService {
    * @param isSystemTheme - Whether to sync with system theme
    * @returns Updated theme state
    */
-  static updateTheme(
-    state: ThemeState,
-    theme: Theme,
-    isSystemTheme = false,
-  ): ThemeState {
+  static updateTheme(theme: Theme, isSystemTheme = false): Partial<ThemeState> {
     return {
-      ...state,
       isSystemTheme,
       theme,
     };
-  }
-
-  /**
-   * Toggles between light and dark themes
-   * Automatically disables system theme sync
-   * @param state - Current theme state
-   * @returns Updated theme state with toggled theme
-   */
-  static toggleTheme(state: ThemeState): ThemeState {
-    const nextTheme = this.getNextTheme(state.theme);
-
-    return this.updateTheme(state, nextTheme, false);
   }
 
   /**
@@ -100,22 +97,22 @@ export class ThemeService {
   }
 
   /**
-   * Sets a specific theme and disables system theme sync
-   * @param state - Current theme state
-   * @param theme - Theme to set
-   * @returns Updated theme state
-   */
-  static setTheme(state: ThemeState, theme: Theme): ThemeState {
-    return this.updateTheme(state, theme, false);
-  }
-
-  /**
    * Gets the opposite theme of the current theme
    * @param currentTheme - Current theme
    * @returns Opposite theme ('light' -> 'dark' or 'dark' -> 'light')
    */
   static getNextTheme(currentTheme: Theme): Theme {
     return currentTheme === "light" ? "dark" : "light";
+  }
+
+  /**
+   * Sets a specific theme and disables system theme sync
+   * @param state - Current theme state
+   * @param theme - Theme to set
+   * @returns Updated theme state
+   */
+  static setTheme(theme: Theme): Partial<ThemeState> {
+    return this.updateTheme(theme, false);
   }
 
   /**

@@ -47,9 +47,8 @@ export class GeneratorService {
   static updatePassphraseOptions(
     state: GeneratorState,
     updates: Partial<PassphraseOptions>,
-  ): GeneratorState {
+  ): Partial<GeneratorState> {
     return {
-      ...state,
       passphraseOptions: {
         ...state.passphraseOptions,
         ...updates,
@@ -74,9 +73,8 @@ export class GeneratorService {
   static updatePasswordOptions(
     state: GeneratorState,
     updates: Partial<PasswordOptions>,
-  ): GeneratorState {
+  ): Partial<GeneratorState> {
     return {
-      ...state,
       passwordOptions: {
         ...state.passwordOptions,
         ...updates,
@@ -132,38 +130,12 @@ export class GeneratorService {
   }
 
   /**
-   * Updates the current password value
-   * @param state - Current generator state
-   * @param value - New password value
-   * @returns Updated generator state
-   */
-  static setPassword(state: GeneratorState, value: string): GeneratorState {
-    return {
-      ...state,
-      password: value,
-    };
-  }
-
-  /**
    * Generates a password using configured options
    * @param passwordOptions - Password generation options
    * @returns Generated password
    */
   static generatePassword(passwordOptions: PasswordOptions): string {
     return passwordGenerator.generatePassword(passwordOptions);
-  }
-
-  /**
-   * Updates the generation mode
-   * @param state - Current generator state
-   * @param mode - New generation mode
-   * @returns Updated generator state
-   */
-  static setMode(state: GeneratorState, mode: GenerationMode): GeneratorState {
-    return {
-      ...state,
-      mode,
-    };
   }
 
   /**
@@ -174,5 +146,29 @@ export class GeneratorService {
    */
   static createPassword(state: GeneratorState, mode: GenerationMode): string {
     return this.generate(state, mode);
+  }
+
+  /**
+   * Updates the current password value
+   * @param state - Current generator state
+   * @param value - New password value
+   * @returns Updated generator state
+   */
+  static setPassword(value: string): Partial<GeneratorState> {
+    return {
+      password: value,
+    };
+  }
+
+  /**
+   * Updates the generation mode
+   * @param state - Current generator state
+   * @param mode - New generation mode
+   * @returns Updated generator state
+   */
+  static setMode(mode: GenerationMode): Partial<GeneratorState> {
+    return {
+      mode,
+    };
   }
 }

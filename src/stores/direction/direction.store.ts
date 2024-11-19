@@ -35,7 +35,7 @@ export const useDirectionStore = create<DirectionStore>()(
       initializeDirection: async () => {
         const direction = await DirectionService.detectDirection();
 
-        set((state) => DirectionService.setDirection(state, direction));
+        set(() => DirectionService.setDirection(direction));
       },
 
       /**
@@ -43,7 +43,7 @@ export const useDirectionStore = create<DirectionStore>()(
        * @param direction - Direction to set ('ltr' or 'rtl')
        */
       setDirection: (direction) => {
-        set((state) => DirectionService.setDirection(state, direction));
+        set(() => DirectionService.setDirection(direction));
       },
     }),
     {

@@ -16,9 +16,8 @@ export class HistoryUIService {
    * // Result: { ...currentState, open: false }
    * ```
    */
-  static hideHistory(state: HistoryUIState): HistoryUIState {
+  static hideHistory(): Partial<HistoryUIState> {
     return {
-      ...state,
       open: false,
     };
   }
@@ -34,9 +33,8 @@ export class HistoryUIService {
    * // Result: { ...currentState, open: true }
    * ```
    */
-  static showHistory(state: HistoryUIState): HistoryUIState {
+  static showHistory(): Partial<HistoryUIState> {
     return {
-      ...state,
       open: true,
     };
   }
