@@ -69,6 +69,11 @@ export class PasswordGeneratorService {
     options: PasswordOptions,
     pool: string,
   ): string {
+    // Create TypedArray for secure random values
+    const randomValues = new Uint32Array(length * 2); // Extra values in case of modulo bias
+
+    crypto.getRandomValues(randomValues);
+
     const chars: string[] = [];
 
     // Get required characters from each enabled set
@@ -76,30 +81,54 @@ export class PasswordGeneratorService {
 
     chars.push(...requiredChars);
 
-    // Fill remaining length with random characters
+    // Fill remaining length with secure random characters
+    let valueIndex = 0;
+
     while (chars.length < length) {
-      chars.push(pool[this.randomGenerator.getRandomNumber(pool.length)]);
+      // Reject values that would create modulo bias
+      let randomValue = randomValues[valueIndex];
+      const maxAcceptable =
+        Math.floor(0xffffffff / pool.length) * pool.length - 1;
+
+      // Get next value if current would introduce bias
+      while (randomValue > maxAcceptable) {
+        valueIndex++;
+
+        if (valueIndex >= randomValues.length) {
+          // If we run out of values, get more
+          crypto.getRandomValues(randomValues);
+          valueIndex = 0;
+        }
+
+        randomValue = randomValues[valueIndex];
+      }
+
+      chars.push(pool[randomValue % pool.length]);
+      valueIndex++;
     }
 
-    // Randomly shuffle all characters
-    this.shuffleArray(chars);
+    // Randomly shuffle using Fisher-Yates with cryptographically secure values
+    for (let i = chars.length - 1; i > 0; i--) {
+      // Get new secure random values for shuffling
+      const shuffleValues = new Uint32Array(1);
+
+      crypto.getRandomValues(shuffleValues);
+
+      // Reject values that would create modulo bias
+      let randomValue = shuffleValues[0];
+      const maxAcceptable = Math.floor(0xffffffff / (i + 1)) * (i + 1) - 1;
+
+      while (randomValue > maxAcceptable) {
+        crypto.getRandomValues(shuffleValues);
+        randomValue = shuffleValues[0];
+      }
+
+      const j = randomValue % (i + 1);
+
+      [chars[i], chars[j]] = [chars[j], chars[i]];
+    }
 
     return chars.join("");
-  }
-
-  /**
-   * Shuffles array in-place using Fisher-Yates algorithm
-   * Uses cryptographically secure random numbers
-   *
-   * @param array - Array to shuffle
-   * @private
-   */
-  private shuffleArray(array: string[]): void {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = this.randomGenerator.getRandomNumber(i + 1);
-
-      [array[i], array[j]] = [array[j], array[i]];
-    }
   }
 
   /**
