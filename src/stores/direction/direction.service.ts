@@ -28,17 +28,6 @@ export class DirectionService {
   }
 
   /**
-   * Determines direction based on language code
-   * @param language - Language code
-   * @returns Appropriate direction for the language
-   */
-  private static getDirectionFromLanguage(language: string): Direction {
-    return this.RTL_LANGUAGES.some((rtlLang) => language.startsWith(rtlLang))
-      ? "rtl"
-      : "ltr";
-  }
-
-  /**
    * Detects direction based on browser language
    * @returns Detected direction
    */
@@ -56,5 +45,16 @@ export class DirectionService {
     return {
       direction: "ltr",
     };
+  }
+
+  /**
+   * Determines direction based on language code
+   * @param language - Language code
+   * @returns Appropriate direction for the language
+   */
+  private static getDirectionFromLanguage(language: string): Direction {
+    return this.RTL_LANGUAGES.some((rtlLang) => language.startsWith(rtlLang))
+      ? "rtl"
+      : "ltr";
   }
 }

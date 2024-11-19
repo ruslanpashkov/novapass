@@ -3,15 +3,6 @@ import type {
   PasswordOptions,
 } from "@/libs/secure-key-generator";
 
-export type GenerationMode = "passphrase" | "password";
-
-export interface GeneratorState {
-  passphraseOptions: PassphraseOptions;
-  passwordOptions: PasswordOptions;
-  mode: GenerationMode;
-  password: string;
-}
-
 export interface GeneratorActions {
   updatePassphraseOptions: (updates: Partial<PassphraseOptions>) => void;
   updatePasswordOptions: (updates: Partial<PasswordOptions>) => void;
@@ -20,4 +11,13 @@ export interface GeneratorActions {
   setMode: (mode: GenerationMode) => void;
 }
 
+export interface GeneratorState {
+  passphraseOptions: PassphraseOptions;
+  passwordOptions: PasswordOptions;
+  mode: GenerationMode;
+  password: string;
+}
+
 export type GeneratorStore = GeneratorActions & GeneratorState;
+
+export type GenerationMode = "passphrase" | "password";

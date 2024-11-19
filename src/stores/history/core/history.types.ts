@@ -1,3 +1,9 @@
+export interface HistoryActions {
+  addPassword: (password: string) => void;
+  removePassword: (id: number) => void;
+  clearHistory: () => void;
+}
+
 export interface Password {
   createdAt: string;
   value: string;
@@ -6,12 +12,6 @@ export interface Password {
 
 export interface HistoryState {
   passwords: Password[];
-}
-
-export interface HistoryActions {
-  addPassword: (password: string) => void;
-  removePassword: (id: number) => void;
-  clearHistory: () => void;
 }
 
 export type HistoryStore = HistoryActions & HistoryState;

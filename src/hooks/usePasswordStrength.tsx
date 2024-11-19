@@ -6,17 +6,6 @@ import { useEffect, useState } from "react";
 import { i18n } from "#i18n";
 
 /**
- * Represents color configuration for strength indicator
- * @interface StrengthColor
- */
-export interface StrengthColor {
-  /** Primary color for strength indicator */
-  main: string;
-  /** Base/background color for strength indicator */
-  base: string;
-}
-
-/**
  * State interface for password strength analysis
  * @interface PasswordStrengthState
  */
@@ -29,6 +18,17 @@ export interface PasswordStrengthState {
   strengthPercent: number;
   /** Human-readable strength level */
   strengthLevel: string;
+}
+
+/**
+ * Represents color configuration for strength indicator
+ * @interface StrengthColor
+ */
+export interface StrengthColor {
+  /** Primary color for strength indicator */
+  main: string;
+  /** Base/background color for strength indicator */
+  base: string;
 }
 
 /**
@@ -61,29 +61,6 @@ interface StrengthStrategy {
     percent: number;
     level: string;
   };
-}
-
-/**
- * Default implementation of password strength analysis strategy
- * @class DefaultStrengthStrategy
- * @implements {StrengthStrategy}
- */
-class DefaultStrengthStrategy implements StrengthStrategy {
-  /**
-   * Analyzes password strength and maps it to visual indicators
-   * @param strength - Password strength analysis result
-   * @returns Object containing visual representation data
-   */
-  analyze(strength: Result | null) {
-    const score = strength?.score ?? -1;
-    const index = Math.min(Math.max(score, 0), 4);
-
-    return {
-      percent: strength ? (score + 1) * 20 : 0,
-      color: STRENGTH_CONFIG.colors[index],
-      level: STRENGTH_CONFIG.levels[index],
-    };
-  }
 }
 
 /**
@@ -127,6 +104,29 @@ class StrengthObserver {
    */
   cleanup(): void {
     this.mounted = false;
+  }
+}
+
+/**
+ * Default implementation of password strength analysis strategy
+ * @class DefaultStrengthStrategy
+ * @implements {StrengthStrategy}
+ */
+class DefaultStrengthStrategy implements StrengthStrategy {
+  /**
+   * Analyzes password strength and maps it to visual indicators
+   * @param strength - Password strength analysis result
+   * @returns Object containing visual representation data
+   */
+  analyze(strength: Result | null) {
+    const score = strength?.score ?? -1;
+    const index = Math.min(Math.max(score, 0), 4);
+
+    return {
+      percent: strength ? (score + 1) * 20 : 0,
+      color: STRENGTH_CONFIG.colors[index],
+      level: STRENGTH_CONFIG.levels[index],
+    };
   }
 }
 

@@ -55,83 +55,6 @@ export class PasswordGeneratorService {
   }
 
   /**
-   * Generates a single password attempt
-   * Ensures required characters are included and randomly placed
-   *
-   * @param length - Desired password length
-   * @param options - Password generation options
-   * @param pool - Character pool to use
-   * @returns Generated password attempt
-   * @private
-   */
-  private generateAttempt(
-    length: number,
-    options: PasswordOptions,
-    pool: string,
-  ): string {
-    // Create TypedArray for secure random values
-    const randomValues = new Uint32Array(length * 2); // Extra values in case of modulo bias
-
-    crypto.getRandomValues(randomValues);
-
-    const chars: string[] = [];
-
-    // Get required characters from each enabled set
-    const requiredChars = this.characterPoolService.getRequiredChars(options);
-
-    chars.push(...requiredChars);
-
-    // Fill remaining length with secure random characters
-    let valueIndex = 0;
-
-    while (chars.length < length) {
-      // Reject values that would create modulo bias
-      let randomValue = randomValues[valueIndex];
-      const maxAcceptable =
-        Math.floor(0xffffffff / pool.length) * pool.length - 1;
-
-      // Get next value if current would introduce bias
-      while (randomValue > maxAcceptable) {
-        valueIndex++;
-
-        if (valueIndex >= randomValues.length) {
-          // If we run out of values, get more
-          crypto.getRandomValues(randomValues);
-          valueIndex = 0;
-        }
-
-        randomValue = randomValues[valueIndex];
-      }
-
-      chars.push(pool[randomValue % pool.length]);
-      valueIndex++;
-    }
-
-    // Randomly shuffle using Fisher-Yates with cryptographically secure values
-    for (let i = chars.length - 1; i > 0; i--) {
-      // Get new secure random values for shuffling
-      const shuffleValues = new Uint32Array(1);
-
-      crypto.getRandomValues(shuffleValues);
-
-      // Reject values that would create modulo bias
-      let randomValue = shuffleValues[0];
-      const maxAcceptable = Math.floor(0xffffffff / (i + 1)) * (i + 1) - 1;
-
-      while (randomValue > maxAcceptable) {
-        crypto.getRandomValues(shuffleValues);
-        randomValue = shuffleValues[0];
-      }
-
-      const j = randomValue % (i + 1);
-
-      [chars[i], chars[j]] = [chars[j], chars[i]];
-    }
-
-    return chars.join("");
-  }
-
-  /**
    * Generates a password meeting all specified requirements
    * Attempts multiple generations if needed to meet criteria
    *
@@ -215,5 +138,82 @@ export class PasswordGeneratorService {
       numbers: true,
       length: 24,
     };
+  }
+
+  /**
+   * Generates a single password attempt
+   * Ensures required characters are included and randomly placed
+   *
+   * @param length - Desired password length
+   * @param options - Password generation options
+   * @param pool - Character pool to use
+   * @returns Generated password attempt
+   * @private
+   */
+  private generateAttempt(
+    length: number,
+    options: PasswordOptions,
+    pool: string,
+  ): string {
+    // Create TypedArray for secure random values
+    const randomValues = new Uint32Array(length * 2); // Extra values in case of modulo bias
+
+    crypto.getRandomValues(randomValues);
+
+    const chars: string[] = [];
+
+    // Get required characters from each enabled set
+    const requiredChars = this.characterPoolService.getRequiredChars(options);
+
+    chars.push(...requiredChars);
+
+    // Fill remaining length with secure random characters
+    let valueIndex = 0;
+
+    while (chars.length < length) {
+      // Reject values that would create modulo bias
+      let randomValue = randomValues[valueIndex];
+      const maxAcceptable =
+        Math.floor(0xffffffff / pool.length) * pool.length - 1;
+
+      // Get next value if current would introduce bias
+      while (randomValue > maxAcceptable) {
+        valueIndex++;
+
+        if (valueIndex >= randomValues.length) {
+          // If we run out of values, get more
+          crypto.getRandomValues(randomValues);
+          valueIndex = 0;
+        }
+
+        randomValue = randomValues[valueIndex];
+      }
+
+      chars.push(pool[randomValue % pool.length]);
+      valueIndex++;
+    }
+
+    // Randomly shuffle using Fisher-Yates with cryptographically secure values
+    for (let i = chars.length - 1; i > 0; i--) {
+      // Get new secure random values for shuffling
+      const shuffleValues = new Uint32Array(1);
+
+      crypto.getRandomValues(shuffleValues);
+
+      // Reject values that would create modulo bias
+      let randomValue = shuffleValues[0];
+      const maxAcceptable = Math.floor(0xffffffff / (i + 1)) * (i + 1) - 1;
+
+      while (randomValue > maxAcceptable) {
+        crypto.getRandomValues(shuffleValues);
+        randomValue = shuffleValues[0];
+      }
+
+      const j = randomValue % (i + 1);
+
+      [chars[i], chars[j]] = [chars[j], chars[i]];
+    }
+
+    return chars.join("");
   }
 }

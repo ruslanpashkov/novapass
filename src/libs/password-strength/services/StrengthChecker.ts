@@ -38,6 +38,25 @@ export abstract class BaseStrengthChecker implements StrengthChecker {
   protected initialized = false;
 
   /**
+   * Checks the strength of a password
+   * Must be implemented by concrete classes
+   *
+   * @abstract
+   * @param password - Password to analyze
+   * @returns Promise resolving to strength analysis result
+   */
+  abstract checkStrength(password: string): Promise<Result>;
+
+  /**
+   * Initializes the strength checker
+   * Must be implemented by concrete classes
+   *
+   * @abstract
+   * @returns Promise that resolves when initialization is complete
+   */
+  abstract initialize(): Promise<void>;
+
+  /**
    * Ensures the checker is initialized before use
    * Handles initialization lifecycle and error cases
    *
@@ -61,23 +80,4 @@ export abstract class BaseStrengthChecker implements StrengthChecker {
 
     return this.initializationPromise;
   }
-
-  /**
-   * Checks the strength of a password
-   * Must be implemented by concrete classes
-   *
-   * @abstract
-   * @param password - Password to analyze
-   * @returns Promise resolving to strength analysis result
-   */
-  abstract checkStrength(password: string): Promise<Result>;
-
-  /**
-   * Initializes the strength checker
-   * Must be implemented by concrete classes
-   *
-   * @abstract
-   * @returns Promise that resolves when initialization is complete
-   */
-  abstract initialize(): Promise<void>;
 }

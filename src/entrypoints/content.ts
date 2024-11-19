@@ -30,26 +30,6 @@ interface TabMessage {
 }
 
 /**
- * Service for handling clipboard operations in the content script context
- * Implements the core clipboard functionality using the Navigator API
- */
-class MessageHandlerService implements MessageHandler {
-  /**
-   * Copies the provided text to clipboard
-   * @param text - The text to copy
-   * @throws Error if clipboard operation fails
-   */
-  async handleCopyText(text: string): Promise<void> {
-    try {
-      await navigator.clipboard.writeText(text);
-    } catch (error) {
-      console.error("Failed to copy text to clipboard:", error);
-      throw new Error("Failed to copy to clipboard");
-    }
-  }
-}
-
-/**
  * Main content script application class
  * Handles message routing and clipboard operations within the browser tab
  */
@@ -92,6 +72,26 @@ class ContentApp {
    */
   start(): void {
     this.setupMessageListeners();
+  }
+}
+
+/**
+ * Service for handling clipboard operations in the content script context
+ * Implements the core clipboard functionality using the Navigator API
+ */
+class MessageHandlerService implements MessageHandler {
+  /**
+   * Copies the provided text to clipboard
+   * @param text - The text to copy
+   * @throws Error if clipboard operation fails
+   */
+  async handleCopyText(text: string): Promise<void> {
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch (error) {
+      console.error("Failed to copy text to clipboard:", error);
+      throw new Error("Failed to copy to clipboard");
+    }
   }
 }
 

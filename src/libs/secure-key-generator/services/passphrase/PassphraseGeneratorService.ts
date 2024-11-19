@@ -46,31 +46,6 @@ export class PassphraseGeneratorService {
   ) {}
 
   /**
-   * Validates passphrase generation options
-   * @param wordCount - Number of words requested
-   * @throws {GeneratorError} If word count is invalid or word list is empty
-   * @private
-   */
-  private validateOptions(wordCount: number): void {
-    if (wordCount < 1) {
-      throw ErrorHandler.createError("INVALID_WORD_COUNT");
-    }
-
-    if (this.wordListProvider.getWords().length === 0) {
-      throw ErrorHandler.createError("EMPTY_WORD_LIST");
-    }
-  }
-
-  /**
-   * Generates a random single digit (0-9)
-   * @returns Single digit as string
-   * @private
-   */
-  private generateRandomDigit(): string {
-    return this.randomGenerator.getRandomNumber(10).toString();
-  }
-
-  /**
    * Generates a passphrase based on provided options
    *
    * @param options - Passphrase generation options
@@ -140,5 +115,30 @@ export class PassphraseGeneratorService {
       includeNumber: false,
       style: "lowercase",
     };
+  }
+
+  /**
+   * Validates passphrase generation options
+   * @param wordCount - Number of words requested
+   * @throws {GeneratorError} If word count is invalid or word list is empty
+   * @private
+   */
+  private validateOptions(wordCount: number): void {
+    if (wordCount < 1) {
+      throw ErrorHandler.createError("INVALID_WORD_COUNT");
+    }
+
+    if (this.wordListProvider.getWords().length === 0) {
+      throw ErrorHandler.createError("EMPTY_WORD_LIST");
+    }
+  }
+
+  /**
+   * Generates a random single digit (0-9)
+   * @returns Single digit as string
+   * @private
+   */
+  private generateRandomDigit(): string {
+    return this.randomGenerator.getRandomNumber(10).toString();
   }
 }
