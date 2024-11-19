@@ -14,7 +14,6 @@ export default defineConfig({
     description: "__MSG_ext_description__",
     author: "__MSG_ext_author__",
     name: "__MSG_ext_name__",
-    extensionApi: "chrome",
     default_locale: "en",
     ...(browser === "firefox" && {
       browser_specific_settings: {
@@ -31,6 +30,7 @@ export default defineConfig({
     },
   }),
   modules: ["@wxt-dev/module-react", "@wxt-dev/i18n/module"],
+  extensionApi: "chrome",
   imports: false,
   srcDir: "src",
 });
