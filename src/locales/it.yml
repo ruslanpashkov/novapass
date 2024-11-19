@@ -1,0 +1,84 @@
+ext:
+  author: Ruslan Pashkov
+  name: "NovaPass: Generatore di password"
+  description: Genera password sicure e complesse con facilità. Personalizza lunghezza, tipi di caratteri e complessità per password uniche.
+
+history:
+  label: Cronologia
+  copy: Copia password
+  remove: Elimina password
+  success: Copiato!
+  clear: Cancella cronologia
+  close: Chiudi cronologia
+  empty:
+    title: La cronologia è vuota
+    description: Le password generate appariranno qui
+
+password:
+  title: Password
+  strength:
+    level: "Sicurezza password: $1"
+  length:
+    label: Lunghezza password
+    count: $1 caratteri
+  options:
+    lowercase: Minuscole
+    uppercase: Maiuscole
+    numbers: Numeri
+    symbols: Simboli
+  skipAmbiguous:
+    label: Salta caratteri ambigui
+  exclude:
+    label: Escludi caratteri specifici
+    placeholder: Inserisci caratteri da escludere
+  suggestion: Seleziona almeno un'opzione
+
+passphrase:
+  title: Frase password
+  words:
+    label: Numero di parole
+    count: $1 parole
+  separator:
+    label: Separatore parole
+    placeholder: Inserisci separatore
+  style:
+    label: Stile parole
+    lowercase: minuscolo
+    uppercase: MAIUSCOLO
+    capitalize: Prima Maiuscola
+  includeNumber:
+    label: Aggiungi numero a parola casuale
+  suggestion: Inserisci un separatore
+
+generate:
+  title: Genera
+  description: Genera una nuova password
+  personalized: Genera la tua password
+  password: Genera password casuale
+  passphrase: Genera frase password
+  mode: Modalità generazione
+
+copy: Copia password
+current: Password generata
+
+startup:
+  history: Solo le password copiate e compilate automaticamente vengono salvate nella cronologia.
+  storage: Le password salvate sono memorizzate localmente sul tuo dispositivo.
+  offline: Non vengono sincronizzate con alcun servizio cloud di default.
+  suggestion: Considera l'uso di un gestore di password o un servizio di archivio sicuro se hai bisogno di accedere alle tue password su più dispositivi.
+  submit: Ho capito
+  close: Chiudi
+
+menu:
+  generate:
+    password: Genera password (copiata)
+    passphrase: Genera passphrase (copiata)
+  open: Apri NovaPass
+
+input:
+  clear: Cancella
+
+error:
+  strength: Impossibile analizzare la sicurezza della password, riprova.
+  unknown: Si è verificato un errore sconosciuto.
+  failed: Impossibile generare la password.

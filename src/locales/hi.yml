@@ -1,0 +1,84 @@
+ext:
+  author: Ruslan Pashkov
+  name: "NovaPass: पासवर्ड जनरेटर"
+  description: आसानी से मजबूत, सुरक्षित पासवर्ड बनाएं। विशिष्ट पासवर्ड के लिए लंबाई, अक्षर प्रकार और जटिलता को अनुकूलित करें।
+
+history:
+  label: इतिहास
+  copy: पासवर्ड कॉपी करें
+  remove: पासवर्ड हटाएं
+  success: कॉपी हो गया!
+  clear: इतिहास साफ़ करें
+  close: इतिहास बंद करें
+  empty:
+    title: आपका इतिहास खाली है
+    description: बनाए गए पासवर्ड यहां दिखाई देंगे
+
+password:
+  title: पासवर्ड
+  strength:
+    level: "पासवर्ड की मजबूती: $1"
+  length:
+    label: पासवर्ड की लंबाई
+    count: $1 अक्षर
+  options:
+    lowercase: छोटे अक्षर
+    uppercase: बड़े अक्षर
+    numbers: संख्याएं
+    symbols: चिह्न
+  skipAmbiguous:
+    label: भ्रामक अक्षरों को छोड़ें
+  exclude:
+    label: विशेष अक्षरों को बाहर रखें
+    placeholder: बाहर रखने के लिए अक्षर डालें
+  suggestion: कम से कम एक विकल्प चुनें
+
+passphrase:
+  title: पासफ्रेज
+  words:
+    label: शब्दों की संख्या
+    count: $1 शब्द
+  separator:
+    label: शब्द विभाजक
+    placeholder: विभाजक डालें
+  style:
+    label: शब्द शैली
+    lowercase: छोटे अक्षर
+    uppercase: बड़े अक्षर
+    capitalize: पहला अक्षर बड़ा
+  includeNumber:
+    label: किसी शब्द में यादृच्छिक संख्या जोड़ें
+  suggestion: शब्द विभाजक डालें
+
+generate:
+  title: बनाएं
+  description: नया पासवर्ड बनाएं
+  personalized: अपना पासवर्ड बनाएं
+  password: यादृच्छिक पासवर्ड बनाएं
+  passphrase: पासफ्रेज बनाएं
+  mode: बनाने का तरीका
+
+copy: पासवर्ड कॉपी करें
+current: बनाया गया पासवर्ड
+
+startup:
+  history: केवल कॉपी किए गए और स्वतः भरे गए पासवर्ड इतिहास में सहेजे जाते हैं।
+  storage: आपके सहेजे गए पासवर्ड आपके डिवाइस पर स्थानीय रूप से संग्रहित किए जाते हैं।
+  offline: ये डिफ़ॉल्ट रूप से किसी क्लाउड सेवा के साथ सिंक नहीं होते हैं।
+  suggestion: यदि आपको अपने पासवर्ड कई डिवाइस पर एक्सेस करने की आवश्यकता है, तो पासवर्ड मैनेजर या सुरक्षित वॉल्ट सेवा का उपयोग करने पर विचार करें।
+  submit: मैं समझ गया
+  close: बंद करें
+
+menu:
+  generate:
+    password: पासवर्ड जनरेट करें (कॉपी किया गया)
+    passphrase: पासफ्रेज जनरेट करें (कॉपी किया गया)
+  open: NovaPass खोलें
+
+input:
+  clear: साफ़ करें
+
+error:
+  strength: पासवर्ड की मजबूती का विश्लेषण करने में विफल, कृपया पुनः प्रयास करें।
+  unknown: एक अज्ञात त्रुटि हुई।
+  failed: पासवर्ड बनाने में विफल।

@@ -1,0 +1,84 @@
+ext:
+  author: Ruslan Pashkov
+  name: "NovaPass: Password Generator"
+  description: Generate strong, secure passwords effortlessly. Customize length, character types, and complexity for unique passwords.
+
+history:
+  label: History
+  copy: Copy password
+  remove: Delete password
+  success: Copied!
+  clear: Clear history
+  close: Close history
+  empty:
+    title: Your history is empty
+    description: Generated passwords will appear here
+
+password:
+  title: Password
+  strength:
+    level: "Password strength: $1"
+  length:
+    label: Password length
+    count: $1 characters
+  options:
+    lowercase: Lowercase
+    uppercase: Uppercase
+    numbers: Numbers
+    symbols: Symbols
+  skipAmbiguous:
+    label: Skip ambiguous characters
+  exclude:
+    label: Exclude specific characters
+    placeholder: Enter characters to exclude
+  suggestion: Select at least one option
+
+passphrase:
+  title: Passphrase
+  words:
+    label: Number of words
+    count: $1 words
+  separator:
+    label: Word separator
+    placeholder: Enter separator
+  style:
+    label: Word style
+    lowercase: lowercase
+    uppercase: UPPERCASE
+    capitalize: Capitalize
+  includeNumber:
+    label: Add number to random word
+  suggestion: Enter a word separator
+
+generate:
+  title: Generate
+  description: Generate a new password
+  personalized: Generate your password
+  password: Generate random password
+  passphrase: Generate passphrase
+  mode: Generation mode
+
+copy: Copy password
+current: Generated password
+
+startup:
+  history: Only copied and auto-filled passwords are saved in history.
+  storage: Your saved passwords are stored locally on your device.
+  offline: They are not synchronized with any cloud service by default.
+  suggestion: Consider using a password manager or secure vault service if you need to access your passwords across multiple devices.
+  submit: I understand
+  close: Close
+
+menu:
+  generate:
+    password: Generate password (copied)
+    passphrase: Generate passphrase (copied)
+  open: Open NovaPass
+
+input:
+  clear: Clear
+
+error:
+  strength: Failed to analyze password strength, please try again.
+  unknown: An unknown error occurred.
+  failed: Failed to generate password.

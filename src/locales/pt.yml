@@ -1,0 +1,84 @@
+ext:
+  author: Ruslan Pashkov
+  name: "NovaPass: Gerador de Senhas"
+  description: Gere palavras-passe fortes e seguras sem esforço. Personalize o comprimento, tipos de caracteres e complexidade para palavras-passe únicas.
+
+history:
+  label: Histórico
+  copy: Copiar palavra-passe
+  remove: Eliminar palavra-passe
+  success: Copiado!
+  clear: Limpar histórico
+  close: Fechar histórico
+  empty:
+    title: O seu histórico está vazio
+    description: As palavras-passe geradas aparecerão aqui
+
+password:
+  title: Palavra-passe
+  strength:
+    level: "Força da palavra-passe: $1"
+  length:
+    label: Comprimento da palavra-passe
+    count: $1 caracteres
+  options:
+    lowercase: Minúsculas
+    uppercase: Maiúsculas
+    numbers: Números
+    symbols: Símbolos
+  skipAmbiguous:
+    label: Ignorar caracteres ambíguos
+  exclude:
+    label: Excluir caracteres específicos
+    placeholder: Introduza caracteres a excluir
+  suggestion: Selecione pelo menos uma opção
+
+passphrase:
+  title: Frase-passe
+  words:
+    label: Número de palavras
+    count: $1 palavras
+  separator:
+    label: Separador de palavras
+    placeholder: Introduza o separador
+  style:
+    label: Estilo de palavra
+    lowercase: minúsculas
+    uppercase: MAIÚSCULAS
+    capitalize: Primeira Maiúscula
+  includeNumber:
+    label: Incluir número na palavra
+  suggestion: Insira um separador de palavras
+
+generate:
+  title: Gerar
+  description: Gerar nova palavra-passe
+  personalized: Gere a sua palavra-passe
+  password: Gerar palavra-passe aleatória
+  passphrase: Gerar frase-passe
+  mode: Modo de geração
+
+copy: Copiar palavra-passe
+current: Palavra-passe gerada
+
+startup:
+  history: Apenas senhas copiadas e preenchidas automaticamente serão salvas no histórico.
+  storage: Suas senhas salvas são armazenadas localmente no seu dispositivo.
+  offline: Por predefinição, não são sincronizadas com nenhum serviço na nuvem.
+  suggestion: Considere usar um gestor de palavras-passe ou serviço de cofre seguro se precisar de aceder às suas palavras-passe em vários dispositivos.
+  submit: Compreendo
+  close: Fechar
+
+menu:
+  generate:
+    password: Gerar senha (copiada)
+    passphrase: Gerar frase-senha (copiada)
+  open: Abrir NovaPass
+
+input:
+  clear: Limpar
+
+error:
+  strength: Falha ao analisar a força da palavra-passe, tente novamente.
+  unknown: Ocorreu um erro desconhecido.
+  failed: Falha ao gerar palavra-passe.

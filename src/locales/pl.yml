@@ -1,0 +1,84 @@
+ext:
+  author: Ruslan Pashkov
+  name: "NovaPass: Generator haseł"
+  description: Generuj silne, bezpieczne hasła bez wysiłku. Dostosuj długość, typy znaków i złożoność dla unikalnych haseł.
+
+history:
+  label: Historia
+  copy: Kopiuj hasło
+  remove: Usuń hasło
+  success: Skopiowano!
+  clear: Wyczyść historię
+  close: Zamknij historię
+  empty:
+    title: Twoja historia jest pusta
+    description: Wygenerowane hasła pojawią się tutaj
+
+password:
+  title: Hasło
+  strength:
+    level: "Siła hasła: $1"
+  length:
+    label: Długość hasła
+    count: $1 znaków
+  options:
+    lowercase: Małe litery
+    uppercase: Wielkie litery
+    numbers: Cyfry
+    symbols: Symbole
+  skipAmbiguous:
+    label: Pomiń niejednoznaczne znaki
+  exclude:
+    label: Wyklucz określone znaki
+    placeholder: Wprowadź znaki do wykluczenia
+  suggestion: Wybierz co najmniej jedną opcję
+
+passphrase:
+  title: Fraza hasła
+  words:
+    label: Liczba słów
+    count: $1 słów
+  separator:
+    label: Separator słów
+    placeholder: Wprowadź separator
+  style:
+    label: Styl słów
+    lowercase: małe litery
+    uppercase: WIELKIE LITERY
+    capitalize: Wielka Pierwsza
+  includeNumber:
+    label: Dodaj liczbę do losowego słowa
+  suggestion: Wprowadź separator słów
+
+generate:
+  title: Generuj
+  description: Wygeneruj nowe hasło
+  personalized: Wygeneruj swoje hasło
+  password: Wygeneruj losowe hasło
+  passphrase: Wygeneruj frazę hasła
+  mode: Tryb generowania
+
+copy: Kopiuj hasło
+current: Wygenerowane hasło
+
+startup:
+  history: Tylko skopiowane i automatycznie wypełnione hasła są zapisywane w historii.
+  storage: Twoje zapisane hasła są przechowywane lokalnie na Twoim urządzeniu.
+  offline: Domyślnie nie są synchronizowane z żadną usługą w chmurze.
+  suggestion: Rozważ użycie menedżera haseł lub bezpiecznego sejfu, jeśli potrzebujesz dostępu do haseł na wielu urządzeniach.
+  submit: Rozumiem
+  close: Zamknij
+
+menu:
+  generate:
+    password: Wygeneruj hasło (skopiowane)
+    passphrase: Wygeneruj frazę hasła (skopiowane)
+  open: Otwórz NovaPass
+
+input:
+  clear: Wyczyść
+
+error:
+  strength: Nie udało się przeanalizować siły hasła, spróbuj ponownie.
+  unknown: Wystąpił nieznany błąd.
+  failed: Nie udało się wygenerować hasła.

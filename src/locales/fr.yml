@@ -1,0 +1,84 @@
+ext:
+  author: Ruslan Pashkov
+  name: "NovaPass : Générateur de mots de passe"
+  description: Générez des mots de passe sécurisés facilement. Personnalisez la longueur, les types de caractères et la complexité.
+
+history:
+  label: Historique
+  copy: Copier le mot de passe
+  remove: Supprimer
+  success: Copié !
+  clear: Effacer l'historique
+  close: Fermer l'historique
+  empty:
+    title: Historique vide
+    description: Les mots de passe générés apparaîtront ici
+
+password:
+  title: Mot de passe
+  strength:
+    level: "Force du mot de passe : $1"
+  length:
+    label: Longueur du mot de passe
+    count: $1 caractères
+  options:
+    lowercase: Minuscules
+    uppercase: Majuscules
+    numbers: Chiffres
+    symbols: Symboles
+  skipAmbiguous:
+    label: Éviter les caractères ambigus
+  exclude:
+    label: Exclure des caractères
+    placeholder: Saisissez les caractères à exclure
+  suggestion: Sélectionnez au moins une option
+
+passphrase:
+  title: Phrase secrète
+  words:
+    label: Nombre de mots
+    count: $1 mots
+  separator:
+    label: Séparateur de mots
+    placeholder: Saisissez un séparateur
+  style:
+    label: Style des mots
+    lowercase: minuscules
+    uppercase: MAJUSCULES
+    capitalize: Première Lettre
+  includeNumber:
+    label: Ajouter un chiffre à un mot aléatoire
+  suggestion: Saisissez un séparateur de mots
+
+generate:
+  title: Générer
+  description: Générer un nouveau mot de passe
+  personalized: Générer votre mot de passe
+  password: Générer un mot de passe aléatoire
+  passphrase: Générer une phrase secrète
+  mode: Mode de génération
+
+copy: Copier le mot de passe
+current: Mot de passe généré
+
+startup:
+  history: Seuls les mots de passe copiés et auto-remplis seront sauvegardés dans l'historique.
+  storage: Vos mots de passe sauvegardés sont stockés localement sur votre appareil.
+  offline: Ils ne sont pas synchronisés avec un service cloud par défaut.
+  suggestion: Pensez à utiliser un gestionnaire de mots de passe si vous devez y accéder sur plusieurs appareils.
+  submit: J'ai compris
+  close: Fermer
+
+menu:
+  generate:
+    password: Générer un mot de passe (copié)
+    passphrase: Générer une phrase secrète (copié)
+  open: Ouvrir NovaPass
+
+input:
+  clear: Effacer
+
+error:
+  strength: Échec de l'analyse de la force du mot de passe, veuillez réessayer.
+  unknown: Une erreur inconnue s'est produite.
+  failed: Échec de la génération du mot de passe.

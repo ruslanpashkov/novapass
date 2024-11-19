@@ -1,0 +1,84 @@
+ext:
+  author: Ruslan Pashkov
+  name: "NovaPass: Generador de contraseñas"
+  description: Genera contraseñas seguras fácilmente. Personaliza longitud, tipos de caracteres y complejidad para contraseñas únicas.
+
+history:
+  label: Historial
+  copy: Copiar contraseña
+  remove: Eliminar contraseña
+  success: ¡Copiado!
+  clear: Limpiar historial
+  close: Cerrar historial
+  empty:
+    title: Tu historial está vacío
+    description: Las contraseñas generadas aparecerán aquí
+
+password:
+  title: Contraseña
+  strength:
+    level: "Fortaleza de la contraseña: $1"
+  length:
+    label: Longitud de la contraseña
+    count: $1 caracteres
+  options:
+    lowercase: Minúsculas
+    uppercase: Mayúsculas
+    numbers: Números
+    symbols: Símbolos
+  skipAmbiguous:
+    label: Omitir caracteres ambiguos
+  exclude:
+    label: Excluir caracteres específicos
+    placeholder: Ingresa caracteres a excluir
+  suggestion: Selecciona al menos una opción
+
+passphrase:
+  title: Frase clave
+  words:
+    label: Número de palabras
+    count: $1 palabras
+  separator:
+    label: Separador de palabras
+    placeholder: Ingresa separador
+  style:
+    label: Estilo de palabras
+    lowercase: minúsculas
+    uppercase: MAYÚSCULAS
+    capitalize: Capitalizar
+  includeNumber:
+    label: Agregar número a palabra aleatoria
+  suggestion: Ingresa un separador de palabras
+
+generate:
+  title: Generar
+  description: Generar nueva contraseña
+  personalized: Generar tu contraseña
+  password: Generar contraseña aleatoria
+  passphrase: Generar frase clave
+  mode: Modo de generación
+
+copy: Copiar contraseña
+current: Contraseña generada
+
+startup:
+  history: Solo las contraseñas copiadas y autocompletadas se guardarán en el historial.
+  storage: Sus contraseñas guardadas se almacenan localmente en su dispositivo.
+  offline: Por defecto, no se sincronizan con ningún servicio en la nube.
+  suggestion: Considera usar un gestor de contraseñas o servicio de almacenamiento seguro si necesitas acceder a tus contraseñas en varios dispositivos.
+  submit: Entiendo
+  close: Cerrar
+
+menu:
+  generate:
+    password: Generar contraseña (copiada)
+    passphrase: Generar frase clave (copiada)
+  open: Abrir NovaPass
+
+input:
+  clear: Limpiar
+
+error:
+  strength: Error al analizar la fortaleza de la contraseña, intenta de nuevo.
+  unknown: Ocurrió un error desconocido.
+  failed: Error al generar la contraseña.

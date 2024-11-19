@@ -1,0 +1,84 @@
+ext:
+  author: Ruslan Pashkov
+  name: "NovaPass: Pembuat Kata Sandi"
+  description: Buat kata sandi yang kuat dan aman dengan mudah. Sesuaikan panjang, jenis karakter, dan kompleksitas untuk kata sandi yang unik.
+
+history:
+  label: Riwayat
+  copy: Salin kata sandi
+  remove: Hapus kata sandi
+  success: Tersalin!
+  clear: Bersihkan riwayat
+  close: Tutup riwayat
+  empty:
+    title: Riwayat Anda kosong
+    description: Kata sandi yang dibuat akan muncul di sini
+
+password:
+  title: Kata Sandi
+  strength:
+    level: "Kekuatan kata sandi: $1"
+  length:
+    label: Panjang kata sandi
+    count: $1 karakter
+  options:
+    lowercase: Huruf kecil
+    uppercase: Huruf besar
+    numbers: Angka
+    symbols: Simbol
+  skipAmbiguous:
+    label: Lewati karakter ambigu
+  exclude:
+    label: Kecualikan karakter tertentu
+    placeholder: Masukkan karakter yang akan dikecualikan
+  suggestion: Pilih setidaknya satu opsi
+
+passphrase:
+  title: Frasa Sandi
+  words:
+    label: Jumlah kata
+    count: $1 kata
+  separator:
+    label: Pemisah kata
+    placeholder: Masukkan pemisah
+  style:
+    label: Gaya kata
+    lowercase: huruf kecil
+    uppercase: HURUF BESAR
+    capitalize: Kapital
+  includeNumber:
+    label: Tambahkan angka ke kata acak
+  suggestion: Masukkan pemisah kata
+
+generate:
+  title: Buat
+  description: Buat kata sandi baru
+  personalized: Buat kata sandi Anda
+  password: Buat kata sandi acak
+  passphrase: Buat frasa sandi
+  mode: Mode pembuatan
+
+copy: Salin kata sandi
+current: Kata sandi yang dibuat
+
+startup:
+  history: Hanya kata sandi yang disalin dan diisi otomatis yang disimpan dalam riwayat.
+  storage: Kata sandi tersimpan Anda disimpan secara lokal di perangkat Anda.
+  offline: Mereka tidak disinkronkan dengan layanan cloud secara default.
+  suggestion: Pertimbangkan untuk menggunakan pengelola kata sandi atau layanan brankas aman jika Anda perlu mengakses kata sandi di beberapa perangkat.
+  submit: Saya mengerti
+  close: Tutup
+
+menu:
+  generate:
+    password: Generate kata sandi (disalin)
+    passphrase: Generate frasa sandi (disalin)
+  open: Buka NovaPass
+
+input:
+  clear: Bersihkan
+
+error:
+  strength: Gagal menganalisis kekuatan kata sandi, silakan coba lagi.
+  unknown: Terjadi kesalahan yang tidak diketahui.
+  failed: Gagal membuat kata sandi.

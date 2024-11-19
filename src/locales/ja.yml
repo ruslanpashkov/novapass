@@ -1,0 +1,84 @@
+ext:
+  author: Ruslan Pashkov
+  name: "NovaPass: パスワード生成ツール"
+  description: 安全で強力なパスワードを簡単に生成。長さ、文字の種類、複雑さをカスタマイズして独自のパスワードを作成。
+
+history:
+  label: 履歴
+  copy: パスワードをコピー
+  remove: 削除
+  success: コピーしました！
+  clear: 履歴を消去
+  close: 履歴を閉じる
+  empty:
+    title: 履歴が空です
+    description: 生成したパスワードがここに表示されます
+
+password:
+  title: パスワード
+  strength:
+    level: "パスワードの強度：$1"
+  length:
+    label: パスワードの長さ
+    count: $1文字
+  options:
+    lowercase: 小文字
+    uppercase: 大文字
+    numbers: 数字
+    symbols: 記号
+  skipAmbiguous:
+    label: 紛らわしい文字を除外
+  exclude:
+    label: 特定の文字を除外
+    placeholder: 除外する文字を入力
+  suggestion: 少なくとも1つのオプションを選択してください
+
+passphrase:
+  title: パスフレーズ
+  words:
+    label: 単語数
+    count: $1語
+  separator:
+    label: 単語の区切り文字
+    placeholder: 区切り文字を入力
+  style:
+    label: 単語のスタイル
+    lowercase: 小文字
+    uppercase: 大文字
+    capitalize: 先頭大文字
+  includeNumber:
+    label: ランダムな単語に数字を追加
+  suggestion: 区切り文字を入力してください
+
+generate:
+  title: 生成
+  description: 新しいパスワードを生成
+  personalized: パスワードを生成
+  password: ランダムパスワードを生成
+  passphrase: パスフレーズを生成
+  mode: 生成モード
+
+copy: パスワードをコピー
+current: 生成されたパスワード
+
+startup:
+  history: コピーされた、または自動入力されたパスワードのみが履歴に保存されます。
+  storage: 保存されたパスワードは、お使いのデバイスにローカルで保存されます。
+  offline: デフォルトではクラウドサービスと同期されません。
+  suggestion: 複数のデバイスでパスワードにアクセスする必要がある場合は、パスワードマネージャーや安全な保管サービスの使用をご検討ください。
+  submit: 理解しました
+  close: 閉じる
+
+menu:
+  generate:
+    password: パスワードを生成（コピー済み）
+    passphrase: パスフレーズを生成（コピー済み）
+  open: NovaPassを開く
+
+input:
+  clear: クリア
+
+error:
+  strength: パスワードの強度分析に失敗しました。もう一度お試しください。
+  unknown: 不明なエラーが発生しました。
+  failed: パスワードの生成に失敗しました。

@@ -1,0 +1,84 @@
+ext:
+  author: Ruslan Pashkov
+  name: "NovaPass: 密码生成器"
+  description: 轻松生成强大安全的密码。自定义长度、字符类型和复杂度，创建独特密码。
+
+history:
+  label: 历史记录
+  copy: 复制密码
+  remove: 删除密码
+  success: 已复制！
+  clear: 清空历史
+  close: 关闭历史
+  empty:
+    title: 历史记录为空
+    description: 生成的密码将显示在这里
+
+password:
+  title: 密码
+  strength:
+    level: "密码强度：$1"
+  length:
+    label: 密码长度
+    count: $1个字符
+  options:
+    lowercase: 小写字母
+    uppercase: 大写字母
+    numbers: 数字
+    symbols: 符号
+  skipAmbiguous:
+    label: 跳过易混淆字符
+  exclude:
+    label: 排除特定字符
+    placeholder: 输入要排除的字符
+  suggestion: 至少选择一个选项
+
+passphrase:
+  title: 密码短语
+  words:
+    label: 单词数量
+    count: $1个单词
+  separator:
+    label: 单词分隔符
+    placeholder: 输入分隔符
+  style:
+    label: 单词样式
+    lowercase: 小写
+    uppercase: 大写
+    capitalize: 首字母大写
+  includeNumber:
+    label: 在随机单词中添加数字
+  suggestion: 请输入单词分隔符
+
+generate:
+  title: 生成
+  description: 生成新密码
+  personalized: 生成您的密码
+  password: 生成随机密码
+  passphrase: 生成密码短语
+  mode: 生成模式
+
+copy: 复制密码
+current: 已生成的密码
+
+startup:
+  history: 仅复制和自动填充的密码会保存在历史记录中。
+  storage: 已保存的密码存储在您的设备本地。
+  offline: 默认情况下不会与任何云服务同步。
+  suggestion: 如果您需要在多个设备上访问密码，建议使用密码管理器或安全保管服务。
+  submit: 我知道了
+  close: 关闭
+
+menu:
+  generate:
+    password: 生成密码（已复制）
+    passphrase: 生成密码短语（已复制）
+  open: 打开 NovaPass
+
+input:
+  clear: 清空
+
+error:
+  strength: 密码强度分析失败，请重试。
+  unknown: 发生未知错误。
+  failed: 密码生成失败。

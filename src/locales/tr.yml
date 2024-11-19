@@ -1,0 +1,84 @@
+ext:
+  author: Ruslan Pashkov
+  name: "NovaPass: Şifre Oluşturucu"
+  description: Güçlü, güvenli şifreler kolayca oluşturun. Benzersiz şifreler için uzunluğu, karakter türlerini ve karmaşıklığı özelleştirin.
+
+history:
+  label: Geçmiş
+  copy: Şifreyi kopyala
+  remove: Şifreyi sil
+  success: Kopyalandı!
+  clear: Geçmişi temizle
+  close: Geçmişi kapat
+  empty:
+    title: Geçmişiniz boş
+    description: Oluşturulan şifreler burada görünecek
+
+password:
+  title: Şifre
+  strength:
+    level: "Şifre gücü: $1"
+  length:
+    label: Şifre uzunluğu
+    count: $1 karakter
+  options:
+    lowercase: Küçük harf
+    uppercase: Büyük harf
+    numbers: Sayılar
+    symbols: Semboller
+  skipAmbiguous:
+    label: Belirsiz karakterleri atla
+  exclude:
+    label: Belirli karakterleri hariç tut
+    placeholder: Hariç tutulacak karakterleri girin
+  suggestion: En az bir seçenek belirleyin
+
+passphrase:
+  title: Parola
+  words:
+    label: Kelime sayısı
+    count: $1 kelime
+  separator:
+    label: Kelime ayırıcı
+    placeholder: Ayırıcı girin
+  style:
+    label: Kelime stili
+    lowercase: küçük harf
+    uppercase: BÜYÜK HARF
+    capitalize: Baş Harfleri Büyük
+  includeNumber:
+    label: Rastgele kelimeye sayı ekle
+  suggestion: Kelime ayırıcı girin
+
+generate:
+  title: Oluştur
+  description: Yeni şifre oluştur
+  personalized: Şifrenizi oluşturun
+  password: Rastgele şifre oluştur
+  passphrase: Parola oluştur
+  mode: Oluşturma modu
+
+copy: Şifreyi kopyala
+current: Oluşturulan şifre
+
+startup:
+  history: Sadece kopyalanan ve otomatik doldurulan şifreler geçmişte saklanır.
+  storage: Kayıtlı şifreleriniz yerel olarak cihazınızda depolanır.
+  offline: Varsayılan olarak herhangi bir bulut hizmetiyle senkronize edilmezler.
+  suggestion: Şifrelerinize birden fazla cihazda erişmeniz gerekiyorsa, bir şifre yöneticisi veya güvenli kasa hizmeti kullanmayı düşünün.
+  submit: Anladım
+  close: Kapat
+
+menu:
+  generate:
+    password: Şifre oluştur (kopyalandı)
+    passphrase: Şifre ifadesi oluştur (kopyalandı)
+  open: NovaPass'ı aç
+
+input:
+  clear: Temizle
+
+error:
+  strength: Şifre gücü analizi başarısız oldu, lütfen tekrar deneyin.
+  unknown: Bilinmeyen bir hata oluştu.
+  failed: Şifre oluşturulamadı.

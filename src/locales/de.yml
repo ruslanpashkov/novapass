@@ -1,0 +1,84 @@
+ext:
+  author: Ruslan Pashkov
+  name: "NovaPass: Passwort-Generator"
+  description: Generiere starke, sichere Passwörter mühelos. Passe Länge, Zeichenarten und Komplexität für einzigartige Passwörter an.
+
+history:
+  label: Verlauf
+  copy: Passwort kopieren
+  remove: Passwort löschen
+  success: Kopiert!
+  clear: Verlauf löschen
+  close: Verlauf schließen
+  empty:
+    title: Dein Verlauf ist leer
+    description: Generierte Passwörter erscheinen hier
+
+password:
+  title: Passwort
+  strength:
+    level: "Passwortstärke: $1"
+  length:
+    label: Passwortlänge
+    count: $1 Zeichen
+  options:
+    lowercase: Kleinbuchstaben
+    uppercase: Großbuchstaben
+    numbers: Zahlen
+    symbols: Sonderzeichen
+  skipAmbiguous:
+    label: Mehrdeutige Zeichen überspringen
+  exclude:
+    label: Bestimmte Zeichen ausschließen
+    placeholder: Zeichen zum Ausschließen eingeben
+  suggestion: Wähle mindestens eine Option
+
+passphrase:
+  title: Passphrase
+  words:
+    label: Anzahl der Wörter
+    count: $1 Wörter
+  separator:
+    label: Wort-Trennzeichen
+    placeholder: Trennzeichen eingeben
+  style:
+    label: Wort-Stil
+    lowercase: kleinbuchstaben
+    uppercase: GROSSBUCHSTABEN
+    capitalize: Großschreibung
+  includeNumber:
+    label: Zahl zu zufälligem Wort hinzufügen
+  suggestion: Gib ein Trennzeichen ein
+
+generate:
+  title: Generieren
+  description: Neues Passwort generieren
+  personalized: Dein Passwort generieren
+  password: Zufälliges Passwort generieren
+  passphrase: Passphrase generieren
+  mode: Generierungsmodus
+
+copy: Passwort kopieren
+current: Generiertes Passwort
+
+startup:
+  history: Nur kopierte und automatisch ausgefüllte Passwörter werden im Verlauf gespeichert.
+  storage: Ihre gespeicherten Passwörter werden lokal auf Ihrem Gerät gespeichert.
+  offline: Sie werden standardmäßig nicht mit Cloud-Diensten synchronisiert.
+  suggestion: Erwäge die Nutzung eines Passwort-Managers oder sicheren Tresors, wenn du deine Passwörter auf mehreren Geräten benötigst.
+  submit: Ich verstehe
+  close: Schließen
+
+menu:
+  generate:
+    password: Passwort generieren (kopiert)
+    passphrase: Passphrase generieren (kopiert)
+  open: NovaPass öffnen
+
+input:
+  clear: Löschen
+
+error:
+  strength: Analyse der Passwortstärke fehlgeschlagen, bitte versuche es erneut.
+  unknown: Ein unbekannter Fehler ist aufgetreten.
+  failed: Passwortgenerierung fehlgeschlagen.

@@ -1,0 +1,84 @@
+ext:
+  author: Ruslan Pashkov
+  name: "NovaPass: مولّد كلمات المرور"
+  description: قم بإنشاء كلمات مرور قوية وآمنة بسهولة. خصص الطول ونوع الأحرف ودرجة التعقيد لكلمات مرور فريدة.
+
+history:
+  label: السجل
+  copy: نسخ كلمة المرور
+  remove: حذف كلمة المرور
+  success: تم النسخ!
+  clear: مسح السجل
+  close: إغلاق السجل
+  empty:
+    title: السجل فارغ
+    description: ستظهر كلمات المرور المُنشأة هنا
+
+password:
+  title: كلمة المرور
+  strength:
+    level: "قوة كلمة المرور: $1"
+  length:
+    label: طول كلمة المرور
+    count: $1 حرف
+  options:
+    lowercase: أحرف صغيرة
+    uppercase: أحرف كبيرة
+    numbers: أرقام
+    symbols: رموز
+  skipAmbiguous:
+    label: تجاهل الأحرف المتشابهة
+  exclude:
+    label: استثناء أحرف محددة
+    placeholder: أدخل الأحرف المراد استثناؤها
+  suggestion: اختر خياراً واحداً على الأقل
+
+passphrase:
+  title: عبارة المرور
+  words:
+    label: عدد الكلمات
+    count: $1 كلمات
+  separator:
+    label: فاصل الكلمات
+    placeholder: أدخل الفاصل
+  style:
+    label: نمط الكلمات
+    lowercase: أحرف صغيرة
+    uppercase: أحرف كبيرة
+    capitalize: حرف أول كبير
+  includeNumber:
+    label: إضافة رقم لكلمة عشوائية
+  suggestion: أدخل فاصل الكلمات
+
+generate:
+  title: إنشاء
+  description: إنشاء كلمة مرور جديدة
+  personalized: إنشاء كلمة مرور مخصصة
+  password: إنشاء كلمة مرور عشوائية
+  passphrase: إنشاء عبارة مرور
+  mode: نمط الإنشاء
+
+copy: نسخ كلمة المرور
+current: كلمة المرور المُنشأة
+
+startup:
+  history: يتم حفظ كلمات المرور المنسوخة والمملوءة تلقائياً فقط في السجل.
+  storage: يتم تخزين كلمات المرور المحفوظة محلياً على جهازك.
+  offline: لا تتم مزامنتها مع أي خدمة سحابية بشكل افتراضي.
+  suggestion: فكر في استخدام مدير كلمات مرور أو خدمة تخزين آمنة إذا كنت بحاجة للوصول إلى كلمات المرور على أجهزة متعددة.
+  submit: فهمت
+  close: إغلاق
+
+menu:
+  generate:
+    password: توليد كلمة المرور (تم النسخ)
+    passphrase: توليد عبارة المرور (تم النسخ)
+  open: فتح NovaPass
+
+input:
+  clear: مسح
+
+error:
+  strength: فشل في تحليل قوة كلمة المرور، يرجى المحاولة مرة أخرى.
+  unknown: حدث خطأ غير معروف.
+  failed: فشل في إنشاء كلمة المرور.

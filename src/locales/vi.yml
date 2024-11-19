@@ -1,0 +1,84 @@
+ext:
+  author: Ruslan Pashkov
+  name: "NovaPass: Trình tạo mật khẩu"
+  description: Tạo mật khẩu mạnh, an toàn một cách dễ dàng. Tùy chỉnh độ dài, loại ký tự và độ phức tạp cho mật khẩu độc đáo.
+
+history:
+  label: Lịch sử
+  copy: Sao chép mật khẩu
+  remove: Xóa mật khẩu
+  success: Đã sao chép!
+  clear: Xóa lịch sử
+  close: Đóng lịch sử
+  empty:
+    title: Lịch sử của bạn trống
+    description: Mật khẩu đã tạo sẽ xuất hiện ở đây
+
+password:
+  title: Mật khẩu
+  strength:
+    level: "Độ mạnh mật khẩu: $1"
+  length:
+    label: Độ dài mật khẩu
+    count: $1 ký tự
+  options:
+    lowercase: Chữ thường
+    uppercase: Chữ hoa
+    numbers: Số
+    symbols: Ký hiệu
+  skipAmbiguous:
+    label: Bỏ qua ký tự không rõ ràng
+  exclude:
+    label: Loại trừ ký tự cụ thể
+    placeholder: Nhập ký tự cần loại trừ
+  suggestion: Chọn ít nhất một tùy chọn
+
+passphrase:
+  title: Cụm mật khẩu
+  words:
+    label: Số từ
+    count: $1 từ
+  separator:
+    label: Dấu phân cách từ
+    placeholder: Nhập dấu phân cách
+  style:
+    label: Kiểu chữ
+    lowercase: chữ thường
+    uppercase: CHỮ HOA
+    capitalize: Viết Hoa Đầu Từ
+  includeNumber:
+    label: Thêm số vào từ ngẫu nhiên
+  suggestion: Nhập dấu phân cách từ
+
+generate:
+  title: Tạo
+  description: Tạo mật khẩu mới
+  personalized: Tạo mật khẩu của bạn
+  password: Tạo mật khẩu ngẫu nhiên
+  passphrase: Tạo cụm mật khẩu
+  mode: Chế độ tạo
+
+copy: Sao chép mật khẩu
+current: Mật khẩu đã tạo
+
+startup:
+  history: Chỉ những mật khẩu đã sao chép và tự động điền mới được lưu trong lịch sử.
+  storage: Mật khẩu đã lưu của bạn được lưu trữ cục bộ trên thiết bị của bạn.
+  offline: Chúng không được đồng bộ hóa với bất kỳ dịch vụ đám mây nào theo mặc định.
+  suggestion: Hãy cân nhắc sử dụng trình quản lý mật khẩu hoặc dịch vụ kho lưu trữ an toàn nếu bạn cần truy cập mật khẩu trên nhiều thiết bị.
+  submit: Tôi hiểu
+  close: Đóng
+
+menu:
+  generate:
+    password: Tạo mật khẩu (đã sao chép)
+    passphrase: Tạo cụm mật khẩu (đã sao chép)
+  open: Mở NovaPass
+
+input:
+  clear: Xóa
+
+error:
+  strength: Không thể phân tích độ mạnh mật khẩu, vui lòng thử lại.
+  unknown: Đã xảy ra lỗi không xác định.
+  failed: Không thể tạo mật khẩu.
