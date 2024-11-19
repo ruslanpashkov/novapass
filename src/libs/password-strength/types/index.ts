@@ -1,6 +1,41 @@
 import type { ZxcvbnResult, Options } from "@zxcvbn-ts/core";
 
 /**
+ * Interface for password strength checker implementations
+ * Defines required methods for analyzing password strength
+ *
+ * @interface StrengthChecker
+ *
+ * @example
+ * ```typescript
+ * class CustomChecker implements StrengthChecker {
+ *   async initialize(): Promise<void> {
+ *     // Load necessary resources
+ *   }
+ *
+ *   async checkStrength(password: string): Promise<Result> {
+ *     // Analyze password strength
+ *     return analysis;
+ *   }
+ * }
+ * ```
+ */
+export interface StrengthChecker {
+  /**
+   * Analyzes the strength of a given password
+   * @param password - Password to analyze
+   * @returns Promise resolving to detailed strength analysis
+   */
+  checkStrength(password: string): Promise<Result>;
+
+  /**
+   * Initializes the strength checker with required resources
+   * @returns Promise resolving when initialization is complete
+   */
+  initialize(): Promise<void>;
+}
+
+/**
  * Configuration options for password strength checker
  * Extends zxcvbn options to allow partial configuration
  *
@@ -42,38 +77,3 @@ export type StrengthCheckerOptions = Partial<Options>;
  * ```
  */
 export type Result = ZxcvbnResult;
-
-/**
- * Interface for password strength checker implementations
- * Defines required methods for analyzing password strength
- *
- * @interface StrengthChecker
- *
- * @example
- * ```typescript
- * class CustomChecker implements StrengthChecker {
- *   async initialize(): Promise<void> {
- *     // Load necessary resources
- *   }
- *
- *   async checkStrength(password: string): Promise<Result> {
- *     // Analyze password strength
- *     return analysis;
- *   }
- * }
- * ```
- */
-export interface StrengthChecker {
-  /**
-   * Analyzes the strength of a given password
-   * @param password - Password to analyze
-   * @returns Promise resolving to detailed strength analysis
-   */
-  checkStrength(password: string): Promise<Result>;
-
-  /**
-   * Initializes the strength checker with required resources
-   * @returns Promise resolving when initialization is complete
-   */
-  initialize(): Promise<void>;
-}

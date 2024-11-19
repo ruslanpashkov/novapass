@@ -45,30 +45,6 @@ interface FormCommand<T> {
 }
 
 /**
- * Handles copying text to clipboard with error handling
- * @class ClipboardCommand
- * @implements {FormCommand<string>}
- */
-class ClipboardCommand implements FormCommand<string> {
-  constructor(private showAlert: (message: string) => void) {}
-
-  /**
-   * Copies text to clipboard and shows alert on error
-   * @param text - Text to copy to clipboard
-   */
-  async execute(text: string): Promise<void> {
-    try {
-      await navigator.clipboard.writeText(text);
-    } catch (error: unknown) {
-      const errorMessage =
-        error instanceof Error ? error.message : i18n.t("error.unknown");
-
-      this.showAlert(errorMessage);
-    }
-  }
-}
-
-/**
  * Handles updates to password generation options
  * @class PasswordOptionsCommand
  * @implements {FormCommand<unknown>}
@@ -146,6 +122,49 @@ class PasswordGenerationCommand
 }
 
 /**
+ * Handles copying text to clipboard with error handling
+ * @class ClipboardCommand
+ * @implements {FormCommand<string>}
+ */
+class ClipboardCommand implements FormCommand<string> {
+  constructor(private showAlert: (message: string) => void) {}
+
+  /**
+   * Copies text to clipboard and shows alert on error
+   * @param text - Text to copy to clipboard
+   */
+  async execute(text: string): Promise<void> {
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch (error: unknown) {
+      const errorMessage =
+        error instanceof Error ? error.message : i18n.t("error.unknown");
+
+      this.showAlert(errorMessage);
+    }
+  }
+}
+
+/**
+ * Handles updates to passphrase number inclusion
+ * @class PassphraseNumberCommand
+ * @implements {FormCommand<boolean>}
+ */
+class PassphraseNumberCommand implements FormCommand<boolean> {
+  constructor(
+    private updateOptions: (updates: Partial<PassphraseOptions>) => void,
+  ) {}
+
+  /**
+   * Updates number inclusion in passphrase options
+   * @param includeNumber - Whether to include numbers
+   */
+  execute(includeNumber: boolean): void {
+    this.updateOptions({ includeNumber });
+  }
+}
+
+/**
  * Handles updates to passphrase word count
  * @class PassphraseWordCountCommand
  * @implements {FormCommand<number>}
@@ -199,25 +218,6 @@ class PassphraseStyleCommand implements FormCommand<WordStyle> {
    */
   execute(style: WordStyle): void {
     this.updateOptions({ style });
-  }
-}
-
-/**
- * Handles updates to passphrase number inclusion
- * @class PassphraseNumberCommand
- * @implements {FormCommand<boolean>}
- */
-class PassphraseNumberCommand implements FormCommand<boolean> {
-  constructor(
-    private updateOptions: (updates: Partial<PassphraseOptions>) => void,
-  ) {}
-
-  /**
-   * Updates number inclusion in passphrase options
-   * @param includeNumber - Whether to include numbers
-   */
-  execute(includeNumber: boolean): void {
-    this.updateOptions({ includeNumber });
   }
 }
 

@@ -36,34 +36,6 @@ export class CryptoRandomGenerator implements RandomGenerator {
   }
 
   /**
-   * Gets next 32-bit random value from buffer
-   * Refills buffer when exhausted
-   *
-   * @returns 32-bit random unsigned integer
-   * @private
-   *
-   * @remarks
-   * Uses batching to reduce calls to crypto.getRandomValues
-   * Each value is read as a 32-bit unsigned integer
-   */
-  private getNextRandomValue(): number {
-    if (this.randomIndex >= this.randomValues.length) {
-      crypto.getRandomValues(this.randomValues);
-      this.randomIndex = 0;
-    }
-
-    const value = new DataView(
-      this.randomValues.buffer,
-      this.randomIndex,
-      4,
-    ).getUint32(0);
-
-    this.randomIndex += 4;
-
-    return value;
-  }
-
-  /**
    * Generates a cryptographically secure random number
    * Uses rejection sampling to ensure uniform distribution
    *
@@ -93,5 +65,33 @@ export class CryptoRandomGenerator implements RandomGenerator {
     } while (rand >= max);
 
     return rand;
+  }
+
+  /**
+   * Gets next 32-bit random value from buffer
+   * Refills buffer when exhausted
+   *
+   * @returns 32-bit random unsigned integer
+   * @private
+   *
+   * @remarks
+   * Uses batching to reduce calls to crypto.getRandomValues
+   * Each value is read as a 32-bit unsigned integer
+   */
+  private getNextRandomValue(): number {
+    if (this.randomIndex >= this.randomValues.length) {
+      crypto.getRandomValues(this.randomValues);
+      this.randomIndex = 0;
+    }
+
+    const value = new DataView(
+      this.randomValues.buffer,
+      this.randomIndex,
+      4,
+    ).getUint32(0);
+
+    this.randomIndex += 4;
+
+    return value;
   }
 }

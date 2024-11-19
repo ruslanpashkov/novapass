@@ -43,33 +43,6 @@ export class PasswordValidationService {
   ]);
 
   /**
-   * Calculates minimum required password length based on enabled character sets
-   * Each enabled character set requires at least one character
-   *
-   * @param options - Password generation options
-   * @returns Minimum required length
-   * @private
-   *
-   * @example
-   * ```typescript
-   * // If uppercase, lowercase, and numbers are enabled:
-   * const minLength = calculateMinimumLength({
-   *   uppercase: true,
-   *   lowercase: true,
-   *   numbers: true,
-   *   symbols: false
-   * });
-   * // Returns: 3
-   * ```
-   */
-  private calculateMinimumLength(options: PasswordOptions): number {
-    return Object.entries(options).filter(
-      ([key, value]) =>
-        key !== "length" && key !== "customization" && value === true,
-    ).length;
-  }
-
-  /**
    * Validates that a password meets all required character set constraints
    * Checks presence of characters from each enabled set
    *
@@ -126,5 +99,32 @@ export class PasswordValidationService {
     if (minLength > options.length) {
       throw ErrorHandler.createError("INVALID_PASSWORD_LENGTH");
     }
+  }
+
+  /**
+   * Calculates minimum required password length based on enabled character sets
+   * Each enabled character set requires at least one character
+   *
+   * @param options - Password generation options
+   * @returns Minimum required length
+   * @private
+   *
+   * @example
+   * ```typescript
+   * // If uppercase, lowercase, and numbers are enabled:
+   * const minLength = calculateMinimumLength({
+   *   uppercase: true,
+   *   lowercase: true,
+   *   numbers: true,
+   *   symbols: false
+   * });
+   * // Returns: 3
+   * ```
+   */
+  private calculateMinimumLength(options: PasswordOptions): number {
+    return Object.entries(options).filter(
+      ([key, value]) =>
+        key !== "length" && key !== "customization" && value === true,
+    ).length;
   }
 }

@@ -21,14 +21,6 @@ import { defineBackground } from "wxt/sandbox";
 import { browser } from "wxt/browser";
 import { storage } from "wxt/storage";
 
-/** Interface for managing password history operations */
-interface HistoryManager {
-  /** Adds a new password to the history storage */
-  addPassword(password: string): Promise<void>;
-  /** Retrieves all stored passwords */
-  getPasswords(): Promise<Password[]>;
-}
-
 /** Interface for managing context menu operations */
 interface ContextMenuManager {
   /** Determines the generation mode based on the menu item ID */
@@ -43,66 +35,18 @@ interface ContextMenuManager {
   init(): Promise<void>;
 }
 
+/** Interface for managing password history operations */
+interface HistoryManager {
+  /** Adds a new password to the history storage */
+  addPassword(password: string): Promise<void>;
+  /** Retrieves all stored passwords */
+  getPasswords(): Promise<Password[]>;
+}
+
 /** Interface for password generation operations */
 interface PasswordGenerator {
   /** Generates a new password or passphrase based on the specified mode */
   generate(mode: GenerationMode): Promise<string>;
-}
-
-/**
- * Service for managing password history
- * Handles storing and retrieving passwords with a maximum history size
- */
-class HistoryManagerService implements HistoryManager {
-  private readonly STORAGE_KEY = "local:history-storage";
-  private readonly MAX_HISTORY_SIZE = 2048;
-
-  /**
-   * Adds a new password to the history
-   * @param password - The password to add to history
-   * @throws Error if saving to storage fails
-   */
-  async addPassword(password: string): Promise<void> {
-    try {
-      const passwords = await this.getPasswords();
-
-      const newPassword: Password = {
-        createdAt: new Date().toISOString(),
-        value: password,
-        id: Date.now(),
-      };
-
-      const updatedPasswords = [newPassword, ...passwords].slice(
-        0,
-        this.MAX_HISTORY_SIZE,
-      );
-
-      await storage.setItem(this.STORAGE_KEY, {
-        state: {
-          passwords: updatedPasswords,
-        },
-      });
-    } catch (error) {
-      console.error("Failed to add password to history:", error);
-      throw new Error("Failed to save password to history");
-    }
-  }
-
-  /**
-   * Retrieves all passwords from storage
-   * @returns Array of stored passwords
-   */
-  async getPasswords(): Promise<Password[]> {
-    try {
-      const historyState = await storage.getItem<StorageValue<HistoryState>>(
-        this.STORAGE_KEY,
-      );
-      return historyState?.state.passwords || [];
-    } catch (error) {
-      console.error("Failed to retrieve passwords from storage:", error);
-      return [];
-    }
-  }
 }
 
 /**
@@ -119,19 +63,6 @@ class ContextMenuManagerService implements ContextMenuManager {
   };
 
   private readonly STORAGE_KEY = "sync:ContextMenu";
-
-  /**
-   * Helper function to get localized messages using browser.i18n
-   * @param key - The message key to lookup
-   */
-  private getMessage(key: string): string {
-    // Since we cannot use #i18n in the background script, we have to use native browser API
-    // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/i18n
-    // TODO: Submit an issue to the @wxt-dev/i18n to support background scripts
-    // @ts-expect-error - @wxt-dev/i18n cannot generate utility types for background.ts due to circular dependency:
-    // background.ts needs i18n utilities, but those utilities need background.ts for generation
-    return browser.i18n.getMessage(key.replace(/\./g, "_"));
-  }
 
   /**
    * Creates the context menu structure
@@ -234,6 +165,145 @@ class ContextMenuManagerService implements ContextMenuManager {
       ? "passphrase"
       : "password";
   }
+
+  /**
+   * Helper function to get localized messages using browser.i18n
+   * @param key - The message key to lookup
+   */
+  private getMessage(key: string): string {
+    // Since we cannot use #i18n in the background script, we have to use native browser API
+    // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/i18n
+    // TODO: Submit an issue to the @wxt-dev/i18n to support background scripts
+    // @ts-expect-error - @wxt-dev/i18n cannot generate utility types for background.ts due to circular dependency:
+    // background.ts needs i18n utilities, but those utilities need background.ts for generation
+    return browser.i18n.getMessage(key.replace(/\./g, "_"));
+  }
+}
+
+/**
+ * Main background application class
+ * Coordinates all background services and handles event listeners
+ */
+class BackgroundApp {
+  private readonly contextMenu: ContextMenuManager;
+  private readonly generator: PasswordGenerator;
+  private readonly history: HistoryManager;
+
+  constructor() {
+    this.history = new HistoryManagerService();
+    this.contextMenu = new ContextMenuManagerService();
+    this.generator = new PasswordGeneratorService();
+  }
+
+  /**
+   * Sets up event listeners for context menu interactions
+   */
+  setupEventListeners(): void {
+    browser.contextMenus.onClicked.addListener(async (info, tab) => {
+      const { menuItemId } = info;
+
+      if (this.contextMenu.isGenerationMenuItem(menuItemId)) {
+        await this.handlePasswordGeneration(menuItemId, tab);
+      } else if (menuItemId === "open-extension") {
+        await browser.action.openPopup();
+      }
+    });
+  }
+
+  /**
+   * Starts the background application
+   * Initializes all services and sets up event handlers
+   */
+  async start(): Promise<void> {
+    try {
+      this.setupEventListeners();
+      await this.contextMenu.init();
+    } catch (error) {
+      console.error("Failed to start background app:", error);
+    }
+  }
+
+  /**
+   * Handles password generation requests from context menu
+   * @param menuItemId - The ID of the clicked menu item
+   * @param tab - The current browser tab
+   */
+  private async handlePasswordGeneration(
+    menuItemId: string | number,
+    tab?: Tabs.Tab,
+  ): Promise<void> {
+    try {
+      const mode = this.contextMenu.getGenerationMode(menuItemId);
+      const password = await this.generator.generate(mode);
+
+      await this.history.addPassword(password);
+
+      if (tab?.id) {
+        await ClipboardManagerService.copyText(tab.id, password);
+      } else {
+        await navigator.clipboard.writeText(password);
+      }
+    } catch (error) {
+      console.error("Failed to handle password generation:", error);
+      await browser.action.openPopup();
+    }
+  }
+}
+
+/**
+ * Service for managing password history
+ * Handles storing and retrieving passwords with a maximum history size
+ */
+class HistoryManagerService implements HistoryManager {
+  private readonly STORAGE_KEY = "local:history-storage";
+  private readonly MAX_HISTORY_SIZE = 2048;
+
+  /**
+   * Adds a new password to the history
+   * @param password - The password to add to history
+   * @throws Error if saving to storage fails
+   */
+  async addPassword(password: string): Promise<void> {
+    try {
+      const passwords = await this.getPasswords();
+
+      const newPassword: Password = {
+        createdAt: new Date().toISOString(),
+        value: password,
+        id: Date.now(),
+      };
+
+      const updatedPasswords = [newPassword, ...passwords].slice(
+        0,
+        this.MAX_HISTORY_SIZE,
+      );
+
+      await storage.setItem(this.STORAGE_KEY, {
+        state: {
+          passwords: updatedPasswords,
+        },
+      });
+    } catch (error) {
+      console.error("Failed to add password to history:", error);
+      throw new Error("Failed to save password to history");
+    }
+  }
+
+  /**
+   * Retrieves all passwords from storage
+   * @returns Array of stored passwords
+   */
+  async getPasswords(): Promise<Password[]> {
+    try {
+      const historyState = await storage.getItem<StorageValue<HistoryState>>(
+        this.STORAGE_KEY,
+      );
+      return historyState?.state.passwords || [];
+    } catch (error) {
+      console.error("Failed to retrieve passwords from storage:", error);
+      return [];
+    }
+  }
 }
 
 /**
@@ -306,76 +376,6 @@ class ClipboardManagerService {
       });
     } catch (error) {
       console.error("Failed to copy text to clipboard:", error);
-    }
-  }
-}
-
-/**
- * Main background application class
- * Coordinates all background services and handles event listeners
- */
-class BackgroundApp {
-  private readonly contextMenu: ContextMenuManager;
-  private readonly generator: PasswordGenerator;
-  private readonly history: HistoryManager;
-
-  constructor() {
-    this.history = new HistoryManagerService();
-    this.contextMenu = new ContextMenuManagerService();
-    this.generator = new PasswordGeneratorService();
-  }
-
-  /**
-   * Handles password generation requests from context menu
-   * @param menuItemId - The ID of the clicked menu item
-   * @param tab - The current browser tab
-   */
-  private async handlePasswordGeneration(
-    menuItemId: string | number,
-    tab?: Tabs.Tab,
-  ): Promise<void> {
-    try {
-      const mode = this.contextMenu.getGenerationMode(menuItemId);
-      const password = await this.generator.generate(mode);
-
-      await this.history.addPassword(password);
-
-      if (tab?.id) {
-        await ClipboardManagerService.copyText(tab.id, password);
-      } else {
-        await navigator.clipboard.writeText(password);
-      }
-    } catch (error) {
-      console.error("Failed to handle password generation:", error);
-      await browser.action.openPopup();
-    }
-  }
-
-  /**
-   * Sets up event listeners for context menu interactions
-   */
-  setupEventListeners(): void {
-    browser.contextMenus.onClicked.addListener(async (info, tab) => {
-      const { menuItemId } = info;
-
-      if (this.contextMenu.isGenerationMenuItem(menuItemId)) {
-        await this.handlePasswordGeneration(menuItemId, tab);
-      } else if (menuItemId === "open-extension") {
-        await browser.action.openPopup();
-      }
-    });
-  }
-
-  /**
-   * Starts the background application
-   * Initializes all services and sets up event handlers
-   */
-  async start(): Promise<void> {
-    try {
-      this.setupEventListeners();
-      await this.contextMenu.init();
-    } catch (error) {
-      console.error("Failed to start background app:", error);
     }
   }
 }

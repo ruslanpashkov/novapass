@@ -21,34 +21,6 @@ import { BaseStrengthChecker } from "./StrengthChecker";
  */
 export class ZxcvbnStrengthChecker extends BaseStrengthChecker {
   /**
-   * Loads required dictionaries and configuration for zxcvbn
-   * Fetches both common patterns and English language specifics
-   *
-   * @private
-   * @returns Promise resolving to strength checker options
-   *
-   * @remarks
-   * - Loads dictionaries asynchronously for better initial load performance
-   * - Combines common patterns with language-specific patterns
-   * - Currently includes English language support
-   */
-  private async loadOptions(): Promise<StrengthCheckerOptions> {
-    const [zxcvbnCommonPackage, zxcvbnEnPackage] = await Promise.all([
-      import("@zxcvbn-ts/language-common"),
-      import("@zxcvbn-ts/language-en"),
-    ]);
-
-    return {
-      dictionary: {
-        ...zxcvbnCommonPackage.dictionary,
-        ...zxcvbnEnPackage.dictionary,
-      },
-      graphs: zxcvbnCommonPackage.adjacencyGraphs,
-      translations: zxcvbnEnPackage.translations,
-    };
-  }
-
-  /**
    * Initializes the zxcvbn checker with required dictionaries and configurations
    * Implements the abstract initialize method from BaseStrengthChecker
    *
@@ -91,5 +63,33 @@ export class ZxcvbnStrengthChecker extends BaseStrengthChecker {
     await this.ensureInitialized();
 
     return zxcvbn(password);
+  }
+
+  /**
+   * Loads required dictionaries and configuration for zxcvbn
+   * Fetches both common patterns and English language specifics
+   *
+   * @private
+   * @returns Promise resolving to strength checker options
+   *
+   * @remarks
+   * - Loads dictionaries asynchronously for better initial load performance
+   * - Combines common patterns with language-specific patterns
+   * - Currently includes English language support
+   */
+  private async loadOptions(): Promise<StrengthCheckerOptions> {
+    const [zxcvbnCommonPackage, zxcvbnEnPackage] = await Promise.all([
+      import("@zxcvbn-ts/language-common"),
+      import("@zxcvbn-ts/language-en"),
+    ]);
+
+    return {
+      dictionary: {
+        ...zxcvbnCommonPackage.dictionary,
+        ...zxcvbnEnPackage.dictionary,
+      },
+      graphs: zxcvbnCommonPackage.adjacencyGraphs,
+      translations: zxcvbnEnPackage.translations,
+    };
   }
 }
