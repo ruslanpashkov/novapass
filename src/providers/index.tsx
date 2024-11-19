@@ -1,5 +1,6 @@
-import { type ReactNode, type FC } from "react";
+import type { ReactNode, FC } from "react";
 
+import { HydrationGuard } from "./HydrationGuard";
 import { ThemeProvider } from "./theme";
 import { CacheProvider } from "./cache";
 
@@ -34,7 +35,9 @@ interface AppProvidersProps {
  * ```
  */
 export const AppProviders: FC<AppProvidersProps> = ({ children }) => (
-  <CacheProvider>
-    <ThemeProvider>{children}</ThemeProvider>
-  </CacheProvider>
+  <HydrationGuard>
+    <CacheProvider>
+      <ThemeProvider>{children}</ThemeProvider>
+    </CacheProvider>
+  </HydrationGuard>
 );

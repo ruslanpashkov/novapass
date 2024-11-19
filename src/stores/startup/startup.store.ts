@@ -2,8 +2,10 @@ import { persist } from "zustand/middleware";
 import { create } from "zustand";
 
 import type { StartupState, StartupStore } from "./startup.types";
+import type { WithHydration } from "../types";
 
 import { createWxtStorage } from "../persistMiddleware";
+import { HydrationService } from "../HydrationService";
 import { StartupService } from "./startup.service";
 
 /**
@@ -25,11 +27,12 @@ import { StartupService } from "./startup.service";
  * }
  * ```
  */
-export const useStartupStore = create<StartupStore>()(
+export const useStartupStore = create<WithHydration<StartupStore>>()(
   persist(
     (set) => ({
       // Initialize with default startup state
       ...StartupService.getInitialState(),
+      ...HydrationService.getInitialState(),
 
       /**
        * Updates the welcome screen viewed status
@@ -37,6 +40,14 @@ export const useStartupStore = create<StartupStore>()(
        */
       setHasSeenWelcome: (value) => {
         set(() => StartupService.updateStatus(value));
+      },
+
+      /**
+       * Sets the hydration status to true
+       * Called automatically by persist middleware after rehydration
+       */
+      setHasHydrated: () => {
+        set(() => HydrationService.setStateAsHydrated());
       },
     }),
     {
@@ -51,6 +62,7 @@ export const useStartupStore = create<StartupStore>()(
       // Use Wxt storage for persistence
       storage: createWxtStorage<StartupState>(),
       name: "startup-storage",
+      ...HydrationService.getHydrationConfig(),
     },
   ),
 );

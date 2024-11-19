@@ -6,9 +6,11 @@ import type {
   GeneratorState,
   GeneratorStore,
 } from "./generator.types";
+import type { WithHydration } from "../types";
 
 import { createWxtStorage } from "../persistMiddleware";
 import { GeneratorService } from "./generator.service";
+import { HydrationService } from "../HydrationService";
 
 /**
  * Zustand store for managing password/passphrase generation state and options
@@ -27,11 +29,12 @@ import { GeneratorService } from "./generator.service";
  * useGeneratorStore.getState().updatePasswordOptions({ length: 16 });
  * ```
  */
-export const useGeneratorStore = create<GeneratorStore>()(
+export const useGeneratorStore = create<WithHydration<GeneratorStore>>()(
   persist(
     (set, get) => ({
       // Initialize with default generator state
       ...GeneratorService.getInitialState(),
+      ...HydrationService.getInitialState(),
 
       /**
        * Updates passphrase generation options
@@ -59,6 +62,14 @@ export const useGeneratorStore = create<GeneratorStore>()(
        */
       updatePasswordOptions: (updates) => {
         set((state) => GeneratorService.updatePasswordOptions(state, updates));
+      },
+
+      /**
+       * Sets the hydration status to true
+       * Called automatically by persist middleware after rehydration
+       */
+      setHasHydrated: () => {
+        set(() => HydrationService.setStateAsHydrated());
       },
 
       /**
@@ -91,6 +102,7 @@ export const useGeneratorStore = create<GeneratorStore>()(
       // Use Wxt storage for persistence
       storage: createWxtStorage<Omit<GeneratorState, "password">>(),
       name: "generator-storage",
+      ...HydrationService.getHydrationConfig(),
     },
   ),
 );
