@@ -22,7 +22,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: node:20
+    container: node:22
     strategy:
       fail-fast: false
       matrix:
