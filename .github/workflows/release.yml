@@ -1,0 +1,128 @@
+name: Release
+
+on:
+  release:
+    types: [released]
+  workflow_dispatch:
+    inputs:
+      targets:
+        description: Browser targets
+        required: true
+        default: '["chrome","firefox"]'
+        type: choice
+        options:
+          - '["chrome","firefox"]'
+          - '["chrome"]'
+          - '["firefox"]'
+      attach_to_release:
+        description: Attach to GitHub release
+        type: boolean
+        default: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: node:22
+    strategy:
+      fail-fast: false
+      matrix:
+        target: ${{ fromJSON(github.event.inputs.targets || '["chrome","firefox"]') }}
+    steps:
+      - uses: actions/checkout@main
+
+      - name: Build extension
+        run: |
+          npm ci
+          npm run zip -- -b ${{ matrix.target }}
+          npm audit
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@main
+        with:
+          name: ${{ matrix.target }}
+          path: ./.output/novapass-*-${{ matrix.target }}.zip
+
+  publish-chrome:
+    needs: build
+    if: ${{ github.event_name == 'release' || contains(github.event.inputs.targets, 'chrome') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@main
+        with:
+          name: chrome
+
+      - name: Upload to GitHub Release
+        if: ${{ github.event_name == 'release' || github.event.inputs.attach_to_release == 'true' }}
+        uses: xresloader/upload-to-github-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          file: novapass-*-chrome.zip
+          draft: false
+          overwrite: true
+          update_latest_release: true
+
+      - name: Publish to Chrome Web Store
+        uses: wdzeng/chrome-extension@v1.2.4
+        with:
+          extension-id: ${{ secrets.CHROME_EXTENSION_ID }}
+          zip-path: novapass-*-chrome.zip
+          client-id: ${{ secrets.CHROME_CLIENT_ID }}
+          client-secret: ${{ secrets.CHROME_CLIENT_SECRET }}
+          refresh-token: ${{ secrets.CHROME_REFRESH_TOKEN }}
+
+  publish-edge:
+    needs: build
+    if: ${{ github.event_name == 'release' || contains(github.event.inputs.targets, 'chrome') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@main
+        with:
+          name: chrome
+
+      - name: Upload to GitHub Release
+        if: ${{ github.event_name == 'release' || github.event.inputs.attach_to_release == 'true' }}
+        uses: xresloader/upload-to-github-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          file: novapass-*-chrome.zip
+          draft: false
+          overwrite: true
+          update_latest_release: true
+
+      - name: Publish to Edge Add-ons
+        uses: wdzeng/edge-addon@v2.0.0
+        with:
+          product-id: ${{ secrets.EDGE_PRODUCT_ID }}
+          zip-path: novapass-*-chrome.zip
+          client-id: ${{ secrets.EDGE_CLIENT_ID }}
+          api-key: ${{ secrets.EDGE_API_KEY }}
+
+  publish-firefox:
+    needs: build
+    if: ${{ github.event_name == 'release' || contains(github.event.inputs.targets, 'firefox') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@main
+        with:
+          name: firefox
+
+      - name: Upload to GitHub Release
+        if: ${{ github.event_name == 'release' || github.event.inputs.attach_to_release == 'true' }}
+        uses: xresloader/upload-to-github-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          file: novapass-*-firefox.zip
+          draft: false
+          overwrite: true
+          update_latest_release: true
+
+      - name: Publish to Firefox Add-ons
+        uses: wdzeng/firefox-addon@v1.1.2
+        with:
+          addon-guid: ${{ secrets.FIREFOX_ADDON_GUID }}
+          xpi-path: novapass-*-firefox.zip
+          jwt-issuer: ${{ secrets.FIREFOX_JWT_ISSUER }}
+          jwt-secret: ${{ secrets.FIREFOX_JWT_SECRET }}
