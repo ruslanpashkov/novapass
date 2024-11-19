@@ -1,9 +1,7 @@
-import { persist } from "zustand/middleware";
 import { create } from "zustand";
 
-import type { DirectionState, DirectionStore } from "./direction.types";
+import type { DirectionStore } from "./direction.types";
 
-import { createWxtStorage } from "../persistMiddleware";
 import { DirectionService } from "./direction.service";
 
 /**
@@ -23,44 +21,27 @@ import { DirectionService } from "./direction.service";
  * useDirectionStore.getState().initializeDirection();
  * ```
  */
-export const useDirectionStore = create<DirectionStore>()(
-  persist(
-    (set) => ({
-      // Initialize with default direction state
-      ...DirectionService.getInitialState(),
+export const useDirectionStore = create<DirectionStore>()((set) => ({
+  // Initialize with default direction state
+  ...DirectionService.getInitialState(),
 
-      /**
-       * Initializes direction based on browser language
-       */
-      initializeDirection: async () => {
-        const direction = await DirectionService.detectDirection();
+  /**
+   * Initializes direction based on browser language
+   */
+  initializeDirection: async () => {
+    const direction = await DirectionService.detectDirection();
 
-        set((state) => DirectionService.setDirection(state, direction));
-      },
+    set(() => DirectionService.setDirection(direction));
+  },
 
-      /**
-       * Sets the current direction and updates HTML dir attribute
-       * @param direction - Direction to set ('ltr' or 'rtl')
-       */
-      setDirection: (direction) => {
-        set((state) => DirectionService.setDirection(state, direction));
-      },
-    }),
-    {
-      /**
-       * Specifies which parts of the state should be persisted
-       * @param state - Current direction state
-       * @returns Partial state containing only persistent values
-       */
-      partialize: (state) => ({
-        direction: state.direction,
-      }),
-      // Use Wxt storage for persistence
-      storage: createWxtStorage<DirectionState>(),
-      name: "direction-storage",
-    },
-  ),
-);
+  /**
+   * Sets the current direction and updates HTML dir attribute
+   * @param direction - Direction to set ('ltr' or 'rtl')
+   */
+  setDirection: (direction) => {
+    set(() => DirectionService.setDirection(direction));
+  },
+}));
 
 /**
  * Initialize browser language direction detection when the store is created

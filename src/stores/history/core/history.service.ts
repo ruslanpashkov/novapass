@@ -17,9 +17,13 @@ export class HistoryService {
    * // Adds password to start of history, removes duplicate if exists
    * ```
    */
-  static addPassword(state: HistoryState, value: string): HistoryState {
+  static addPassword(
+    state: HistoryState,
+    value: string,
+  ): Partial<HistoryState> {
+    const { passwords } = state;
     const newPassword = this.createPassword(value);
-    const existingPassword = this.findByValue(state.passwords, value);
+    const existingPassword = this.findByValue(passwords, value);
 
     if (existingPassword) {
       const filteredPasswords = this.removeById(
@@ -33,7 +37,7 @@ export class HistoryService {
     }
 
     return {
-      passwords: [newPassword, ...state.passwords],
+      passwords: [newPassword, ...passwords],
     };
   }
 
@@ -43,9 +47,11 @@ export class HistoryService {
    * @param id - ID of password to remove
    * @returns Updated history state with password removed
    */
-  static removePassword(state: HistoryState, id: number): HistoryState {
+  static removePassword(
+    state: HistoryState,
+    id: number,
+  ): Partial<HistoryState> {
     return {
-      ...state,
       passwords: this.removeById(state.passwords, id),
     };
   }

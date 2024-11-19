@@ -1,9 +1,7 @@
-import { persist } from "zustand/middleware";
 import { create } from "zustand";
 
-import type { ThemeStore, ThemeState } from "./theme.types";
+import type { ThemeStore } from "./theme.types";
 
-import { createWxtStorage } from "../persistMiddleware";
 import { ThemeService } from "./theme.service";
 
 /**
@@ -23,65 +21,45 @@ import { ThemeService } from "./theme.service";
  * useThemeStore.getState().toggleTheme();
  * ```
  */
-export const useThemeStore = create<ThemeStore>()(
-  persist(
-    (set, get) => ({
-      // Initialize with default theme state
-      ...ThemeService.getInitialState(),
+export const useThemeStore = create<ThemeStore>()((set, get) => ({
+  // Initialize with default theme state
+  ...ThemeService.getInitialState(),
 
-      /**
-       * Synchronizes theme with system preferences and sets up theme change listener
-       * @returns {() => void} Cleanup function to remove system theme listener
-       */
-      syncWithSystem: () => {
-        // Update theme to match current system preference
-        set((state) =>
-          ThemeService.updateTheme(state, ThemeService.getSystemTheme(), true),
-        );
+  /**
+   * Synchronizes theme with system preferences and sets up theme change listener
+   * @returns {() => void} Cleanup function to remove system theme listener
+   */
+  syncWithSystem: () => {
+    // Update theme to match current system preference
+    set(() => ThemeService.updateTheme(ThemeService.getSystemTheme(), true));
 
-        // Set up listener for system theme changes
-        return ThemeService.setupSystemThemeListener(() => {
-          const state = get();
-          const update = ThemeService.handleSystemThemeChange(state);
+    // Set up listener for system theme changes
+    return ThemeService.setupSystemThemeListener(() => {
+      const state = get();
+      const update = ThemeService.handleSystemThemeChange(state);
 
-          if (update) {
-            set(update);
-          }
-        });
-      },
+      if (update) {
+        set(update);
+      }
+    });
+  },
 
-      /**
-       * Sets the theme to a specific value
-       * @param theme - Theme to set (usually 'light' or 'dark')
-       */
-      setTheme: (theme) => {
-        set((state) => ThemeService.setTheme(state, theme));
-      },
+  /**
+   * Toggles between light and dark theme
+   * If system theme is enabled, this will disable it
+   */
+  toggleTheme: () => {
+    set((state) => ThemeService.toggleTheme(state));
+  },
 
-      /**
-       * Toggles between light and dark theme
-       * If system theme is enabled, this will disable it
-       */
-      toggleTheme: () => {
-        set((state) => ThemeService.toggleTheme(state));
-      },
-    }),
-    {
-      /**
-       * Specifies which parts of the state should be persisted
-       * @param state - Current theme state
-       * @returns Partial state containing only persistent values
-       */
-      partialize: (state) => ({
-        isSystemTheme: state.isSystemTheme,
-        theme: state.theme,
-      }),
-      // Use Wxt storage for persistence
-      storage: createWxtStorage<ThemeState>(),
-      name: "theme-storage",
-    },
-  ),
-);
+  /**
+   * Sets the theme to a specific value
+   * @param theme - Theme to set (usually 'light' or 'dark')
+   */
+  setTheme: (theme) => {
+    set(() => ThemeService.setTheme(theme));
+  },
+}));
 
 /**
  * Initialize system theme synchronization when the store is created

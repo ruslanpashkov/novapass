@@ -10,24 +10,6 @@ export class DirectionService {
   private static RTL_LANGUAGES = ["ar", "fa", "he", "ur"];
 
   /**
-   * Updates the current direction
-   * @param state - Current direction state
-   * @param direction - New direction value
-   * @returns Updated direction state
-   */
-  static setDirection(
-    state: DirectionState,
-    direction: Direction,
-  ): DirectionState {
-    document.documentElement.dir = direction;
-
-    return {
-      ...state,
-      direction,
-    };
-  }
-
-  /**
    * Detects direction based on browser language
    * @returns Detected direction
    */
@@ -35,6 +17,20 @@ export class DirectionService {
     const language = browser.i18n.getUILanguage();
 
     return this.getDirectionFromLanguage(language);
+  }
+
+  /**
+   * Updates the current direction
+   * @param state - Current direction state
+   * @param direction - New direction value
+   * @returns Updated direction state
+   */
+  static setDirection(direction: Direction): Partial<DirectionState> {
+    document.documentElement.dir = direction;
+
+    return {
+      direction,
+    };
   }
 
   /**

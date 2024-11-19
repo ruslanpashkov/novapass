@@ -16,7 +16,7 @@ export class StartupService {
    * // Result: { hasSeenWelcome: true }
    * ```
    */
-  static updateStatus(value: boolean): StartupState {
+  static updateStatus(value: boolean): Partial<StartupState> {
     return {
       hasSeenWelcome: value,
     };

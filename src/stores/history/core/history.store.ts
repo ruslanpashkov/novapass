@@ -1,3 +1,6 @@
+import type { WithHydration } from "@/stores/types";
+
+import { HydrationService } from "@/stores/HydrationService";
 import { persist } from "zustand/middleware";
 import { create } from "zustand";
 
@@ -29,11 +32,12 @@ import { HistoryService } from "./history.service";
  * console.log(passwords);
  * ```
  */
-export const useHistoryStore = create<HistoryStore>()(
+export const useHistoryStore = create<WithHydration<HistoryStore>>()(
   persist(
     (set) => ({
       // Initialize with default history state
       ...HistoryService.getInitialState(),
+      ...HydrationService.getInitialState(),
 
       /**
        * Adds a new password to the history
@@ -49,6 +53,14 @@ export const useHistoryStore = create<HistoryStore>()(
        */
       removePassword: (id) => {
         set((state) => HistoryService.removePassword(state, id));
+      },
+
+      /**
+       * Sets the hydration status to true
+       * Called automatically by persist middleware after rehydration
+       */
+      setHasHydrated: () => {
+        set(() => HydrationService.setStateAsHydrated());
       },
 
       /**
@@ -71,6 +83,7 @@ export const useHistoryStore = create<HistoryStore>()(
       // Use Wxt storage for persistence
       storage: createWxtStorage<HistoryState>(),
       name: "history-storage",
+      ...HydrationService.getHydrationConfig(),
     },
   ),
 );

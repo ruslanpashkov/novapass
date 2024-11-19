@@ -35,7 +35,7 @@ export const useHistoryUIStore = create<HistoryUIStore>()((set) => ({
    * Updates visibility state to true
    */
   showHistory: () => {
-    set((state) => HistoryUIService.showHistory(state));
+    set(() => HistoryUIService.showHistory());
   },
 
   /**
@@ -43,6 +43,6 @@ export const useHistoryUIStore = create<HistoryUIStore>()((set) => ({
    * Updates visibility state to false
    */
   hideHistory: () => {
-    set((state) => HistoryUIService.hideHistory(state));
+    set(() => HistoryUIService.hideHistory());
   },
 }));

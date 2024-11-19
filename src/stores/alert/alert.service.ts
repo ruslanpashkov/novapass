@@ -18,13 +18,12 @@ export class AlertService {
    * // If hidden: unchanged state
    * ```
    */
-  static hide(state: AlertState): AlertState {
+  static hide(state: AlertState): Partial<AlertState> {
     if (!this.canHide(state)) {
       return state;
     }
 
     return {
-      ...state,
       open: false,
     };
   }
@@ -35,25 +34,13 @@ export class AlertService {
    * @param state - Current alert state
    * @returns Updated state with message cleared, or unchanged state if alert is visible
    */
-  static clearMessage(state: AlertState): AlertState {
+  static clearMessage(state: AlertState): Partial<AlertState> {
     if (state.open) {
       return state;
     }
 
     return {
-      ...state,
       message: null,
-    };
-  }
-
-  /**
-   * Gets initial alert state
-   * @returns Default alert state with no message and hidden visibility
-   */
-  static getInitialState(): AlertState {
-    return {
-      message: null,
-      open: false,
     };
   }
 
@@ -68,10 +55,21 @@ export class AlertService {
    * // Result: { open: true, message: "Operation successful!" }
    * ```
    */
-  static show(message: string): AlertState {
+  static show(message: string): Partial<AlertState> {
     return {
       open: true,
       message,
+    };
+  }
+
+  /**
+   * Gets initial alert state
+   * @returns Default alert state with no message and hidden visibility
+   */
+  static getInitialState(): AlertState {
+    return {
+      message: null,
+      open: false,
     };
   }
 
