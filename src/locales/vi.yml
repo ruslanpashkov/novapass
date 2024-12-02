@@ -62,18 +62,12 @@ copy: Sao chép mật khẩu
 current: Mật khẩu đã tạo
 
 startup:
-  history: Chỉ những mật khẩu đã sao chép và tự động điền mới được lưu trong lịch sử.
+  history: Chỉ những mật khẩu đã sao chép sẽ được lưu trong lịch sử mật khẩu của bạn.
   storage: Mật khẩu đã lưu của bạn được lưu trữ cục bộ trên thiết bị của bạn.
   offline: Chúng không được đồng bộ hóa với bất kỳ dịch vụ đám mây nào theo mặc định.
   suggestion: Hãy cân nhắc sử dụng trình quản lý mật khẩu hoặc dịch vụ kho lưu trữ an toàn nếu bạn cần truy cập mật khẩu trên nhiều thiết bị.
   submit: Tôi hiểu
   close: Đóng
-
-menu:
-  generate:
-    password: Tạo mật khẩu (đã sao chép)
-    passphrase: Tạo cụm mật khẩu (đã sao chép)
-  open: Mở NovaPass
 
 input:
   clear: Xóa

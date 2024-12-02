@@ -62,18 +62,12 @@ copy: Copiar contraseña
 current: Contraseña generada
 
 startup:
-  history: Solo las contraseñas copiadas y autocompletadas se guardarán en el historial.
+  history: Solo las contraseñas copiadas se guardarán en tu historial de contraseñas.
   storage: Sus contraseñas guardadas se almacenan localmente en su dispositivo.
   offline: Por defecto, no se sincronizan con ningún servicio en la nube.
   suggestion: Considera usar un gestor de contraseñas o servicio de almacenamiento seguro si necesitas acceder a tus contraseñas en varios dispositivos.
   submit: Entiendo
   close: Cerrar
-
-menu:
-  generate:
-    password: Generar contraseña (copiada)
-    passphrase: Generar frase clave (copiada)
-  open: Abrir NovaPass
 
 input:
   clear: Limpiar

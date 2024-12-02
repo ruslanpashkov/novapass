@@ -62,18 +62,12 @@ copy: Copiar palavra-passe
 current: Palavra-passe gerada
 
 startup:
-  history: Apenas senhas copiadas e preenchidas automaticamente serão salvas no histórico.
+  history: Apenas senhas copiadas serão salvas no seu histórico de senhas.
   storage: Suas senhas salvas são armazenadas localmente no seu dispositivo.
   offline: Por predefinição, não são sincronizadas com nenhum serviço na nuvem.
   suggestion: Considere usar um gestor de palavras-passe ou serviço de cofre seguro se precisar de aceder às suas palavras-passe em vários dispositivos.
   submit: Compreendo
   close: Fechar
-
-menu:
-  generate:
-    password: Gerar senha (copiada)
-    passphrase: Gerar frase-senha (copiada)
-  open: Abrir NovaPass
 
 input:
   clear: Limpar

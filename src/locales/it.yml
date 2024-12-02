@@ -62,18 +62,12 @@ copy: Copia password
 current: Password generata
 
 startup:
-  history: Solo le password copiate e compilate automaticamente vengono salvate nella cronologia.
+  history: Solo le password copiate verranno salvate nella cronologia delle password.
   storage: Le password salvate sono memorizzate localmente sul tuo dispositivo.
   offline: Non vengono sincronizzate con alcun servizio cloud di default.
   suggestion: Considera l'uso di un gestore di password o un servizio di archivio sicuro se hai bisogno di accedere alle tue password su più dispositivi.
   submit: Ho capito
   close: Chiudi
-
-menu:
-  generate:
-    password: Genera password (copiata)
-    passphrase: Genera passphrase (copiata)
-  open: Apri NovaPass
 
 input:
   clear: Cancella
