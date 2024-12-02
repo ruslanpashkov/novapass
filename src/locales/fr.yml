@@ -62,18 +62,12 @@ copy: Copier le mot de passe
 current: Mot de passe généré
 
 startup:
-  history: Seuls les mots de passe copiés et auto-remplis seront sauvegardés dans l'historique.
+  history: Seuls les mots de passe copiés seront enregistrés dans votre historique.
   storage: Vos mots de passe sauvegardés sont stockés localement sur votre appareil.
   offline: Ils ne sont pas synchronisés avec un service cloud par défaut.
   suggestion: Pensez à utiliser un gestionnaire de mots de passe si vous devez y accéder sur plusieurs appareils.
   submit: J'ai compris
   close: Fermer
-
-menu:
-  generate:
-    password: Générer un mot de passe (copié)
-    passphrase: Générer une phrase secrète (copié)
-  open: Ouvrir NovaPass
 
 input:
   clear: Effacer

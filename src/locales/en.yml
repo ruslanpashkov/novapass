@@ -62,18 +62,12 @@ copy: Copy password
 current: Generated password
 
 startup:
-  history: Only copied and auto-filled passwords are saved in history.
+  history: Only copied passwords will be saved in your password history.
   storage: Your saved passwords are stored locally on your device.
   offline: They are not synchronized with any cloud service by default.
   suggestion: Consider using a password manager or secure vault service if you need to access your passwords across multiple devices.
   submit: I understand
   close: Close
-
-menu:
-  generate:
-    password: Generate password (copied)
-    passphrase: Generate passphrase (copied)
-  open: Open NovaPass
 
 input:
   clear: Clear

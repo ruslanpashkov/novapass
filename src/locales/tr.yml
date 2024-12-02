@@ -62,18 +62,12 @@ copy: Şifreyi kopyala
 current: Oluşturulan şifre
 
 startup:
-  history: Sadece kopyalanan ve otomatik doldurulan şifreler geçmişte saklanır.
+  history: Yalnızca kopyalanan parolalar şifre geçmişinizde saklanacaktır.
   storage: Kayıtlı şifreleriniz yerel olarak cihazınızda depolanır.
   offline: Varsayılan olarak herhangi bir bulut hizmetiyle senkronize edilmezler.
   suggestion: Şifrelerinize birden fazla cihazda erişmeniz gerekiyorsa, bir şifre yöneticisi veya güvenli kasa hizmeti kullanmayı düşünün.
   submit: Anladım
   close: Kapat
-
-menu:
-  generate:
-    password: Şifre oluştur (kopyalandı)
-    passphrase: Şifre ifadesi oluştur (kopyalandı)
-  open: NovaPass'ı aç
 
 input:
   clear: Temizle

@@ -62,18 +62,12 @@ copy: Salin kata sandi
 current: Kata sandi yang dibuat
 
 startup:
-  history: Hanya kata sandi yang disalin dan diisi otomatis yang disimpan dalam riwayat.
+  history: Hanya kata sandi yang disalin akan disimpan dalam riwayat kata sandi Anda.
   storage: Kata sandi tersimpan Anda disimpan secara lokal di perangkat Anda.
   offline: Mereka tidak disinkronkan dengan layanan cloud secara default.
   suggestion: Pertimbangkan untuk menggunakan pengelola kata sandi atau layanan brankas aman jika Anda perlu mengakses kata sandi di beberapa perangkat.
   submit: Saya mengerti
   close: Tutup
-
-menu:
-  generate:
-    password: Generate kata sandi (disalin)
-    passphrase: Generate frasa sandi (disalin)
-  open: Buka NovaPass
 
 input:
   clear: Bersihkan

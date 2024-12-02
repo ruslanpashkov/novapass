@@ -3,14 +3,8 @@ import { type WxtViteConfig, defineConfig } from "wxt";
 // See https://wxt.dev/api/config.html
 export default defineConfig({
   manifest: ({ browser }) => ({
-    permissions: [
-      "scripting",
-      "activeTab",
-      "contextMenus",
-      "storage",
-      "clipboardWrite",
-    ],
     homepage_url: "https://github.com/ruslanpashkov/novapass",
+    permissions: ["clipboardWrite", "storage"],
     description: "__MSG_ext_description__",
     author: "__MSG_ext_author__",
     name: "__MSG_ext_name__",

@@ -62,18 +62,12 @@ copy: 复制密码
 current: 已生成的密码
 
 startup:
-  history: 仅复制和自动填充的密码会保存在历史记录中。
+  history: 仅复制的密码将保存在您的密码历史记录中。
   storage: 已保存的密码存储在您的设备本地。
   offline: 默认情况下不会与任何云服务同步。
   suggestion: 如果您需要在多个设备上访问密码，建议使用密码管理器或安全保管服务。
   submit: 我知道了
   close: 关闭
-
-menu:
-  generate:
-    password: 生成密码（已复制）
-    passphrase: 生成密码短语（已复制）
-  open: 打开 NovaPass
 
 input:
   clear: 清空

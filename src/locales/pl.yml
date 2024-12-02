@@ -62,18 +62,12 @@ copy: Kopiuj hasło
 current: Wygenerowane hasło
 
 startup:
-  history: Tylko skopiowane i automatycznie wypełnione hasła są zapisywane w historii.
+  history: Tylko skopiowane hasła zostaną zapisane w historii haseł.
   storage: Twoje zapisane hasła są przechowywane lokalnie na Twoim urządzeniu.
   offline: Domyślnie nie są synchronizowane z żadną usługą w chmurze.
   suggestion: Rozważ użycie menedżera haseł lub bezpiecznego sejfu, jeśli potrzebujesz dostępu do haseł na wielu urządzeniach.
   submit: Rozumiem
   close: Zamknij
-
-menu:
-  generate:
-    password: Wygeneruj hasło (skopiowane)
-    passphrase: Wygeneruj frazę hasła (skopiowane)
-  open: Otwórz NovaPass
 
 input:
   clear: Wyczyść

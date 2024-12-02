@@ -62,18 +62,12 @@ copy: Passwort kopieren
 current: Generiertes Passwort
 
 startup:
-  history: Nur kopierte und automatisch ausgefüllte Passwörter werden im Verlauf gespeichert.
+  history: Nur kopierte Passwörter werden in Ihrem Passwortverlauf gespeichert.
   storage: Ihre gespeicherten Passwörter werden lokal auf Ihrem Gerät gespeichert.
   offline: Sie werden standardmäßig nicht mit Cloud-Diensten synchronisiert.
   suggestion: Erwäge die Nutzung eines Passwort-Managers oder sicheren Tresors, wenn du deine Passwörter auf mehreren Geräten benötigst.
   submit: Ich verstehe
   close: Schließen
-
-menu:
-  generate:
-    password: Passwort generieren (kopiert)
-    passphrase: Passphrase generieren (kopiert)
-  open: NovaPass öffnen
 
 input:
   clear: Löschen
