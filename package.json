@@ -41,7 +41,7 @@
     "@types/react-transition-group": "^4.4.11",
     "@types/stylis": "^4.2.6",
     "@wxt-dev/module-react": "^1.1.2",
-    "eslint": "^9.17.0",
+    "eslint": "^9.18.0",
     "eslint-plugin-perfectionist": "^4.6.0",
     "eslint-plugin-react": "^7.37.2",
     "eslint-plugin-react-hooks": "^5.1.0",
