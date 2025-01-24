@@ -41,6 +41,7 @@ jobs:
         with:
           name: ${{ matrix.target }}
           path: ./.output/novapass-*-${{ matrix.target }}.zip
+          include-hidden-files: true
 
   publish-chrome:
     needs: build
