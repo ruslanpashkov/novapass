@@ -39,7 +39,7 @@ export const useHighlightEffect = ({
 } => {
   const [isHighlighted, setIsHighlighted] = useState(false);
   // Store timeout ID to handle cleanup
-  const timeoutRef = useRef<number>();
+  const timeoutRef = useRef<number>(null);
 
   /**
    * Triggers the highlight effect and manages its lifecycle
