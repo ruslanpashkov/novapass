@@ -43,6 +43,29 @@ jobs:
           path: ./.output/novapass-*-${{ matrix.target }}.zip
           include-hidden-files: true
 
+  publish-github:
+    needs: build
+    if: ${{ github.event_name == 'release' || github.event.inputs.attach_to_release == 'true' }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        target: ${{ fromJSON(github.event.inputs.targets || '["chrome","firefox"]') }}
+    steps:
+      - uses: actions/download-artifact@main
+        with:
+          name: ${{ matrix.target }}
+
+      - name: Upload to GitHub Release
+        uses: xresloader/upload-to-github-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          file: novapass-*-${{ matrix.target }}.zip
+          draft: false
+          overwrite: true
+          update_latest_release: true
+
   publish-chrome:
     needs: build
     if: ${{ github.event_name == 'release' || contains(github.event.inputs.targets, 'chrome') }}
@@ -51,17 +74,6 @@ jobs:
       - uses: actions/download-artifact@main
         with:
           name: chrome
-
-      - name: Upload to GitHub Release
-        if: ${{ github.event_name == 'release' || github.event.inputs.attach_to_release == 'true' }}
-        uses: xresloader/upload-to-github-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          file: novapass-*-chrome.zip
-          draft: false
-          overwrite: true
-          update_latest_release: true
 
       - name: Publish to Chrome Web Store
         uses: wdzeng/chrome-extension@v1.2.4
@@ -81,17 +93,6 @@ jobs:
         with:
           name: chrome
 
-      - name: Upload to GitHub Release
-        if: ${{ github.event_name == 'release' || github.event.inputs.attach_to_release == 'true' }}
-        uses: xresloader/upload-to-github-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          file: novapass-*-chrome.zip
-          draft: false
-          overwrite: true
-          update_latest_release: true
-
       - name: Publish to Edge Add-ons
         uses: wdzeng/edge-addon@v2.0.0
         with:
@@ -108,17 +109,6 @@ jobs:
       - uses: actions/download-artifact@main
         with:
           name: firefox
-
-      - name: Upload to GitHub Release
-        if: ${{ github.event_name == 'release' || github.event.inputs.attach_to_release == 'true' }}
-        uses: xresloader/upload-to-github-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          file: novapass-*-firefox.zip
-          draft: false
-          overwrite: true
-          update_latest_release: true
 
       - name: Publish to Firefox Add-ons
         uses: wdzeng/firefox-addon@v1.1.2
