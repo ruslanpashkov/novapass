@@ -76,7 +76,7 @@ jobs:
           name: chrome
 
       - name: Publish to Chrome Web Store
-        uses: wdzeng/chrome-extension@v1.2.4
+        uses: wdzeng/chrome-extension@v1.3.0
         with:
           extension-id: ${{ secrets.CHROME_EXTENSION_ID }}
           zip-path: novapass-*-chrome.zip
@@ -94,7 +94,7 @@ jobs:
           name: chrome
 
       - name: Publish to Edge Add-ons
-        uses: wdzeng/edge-addon@v2.0.0
+        uses: wdzeng/edge-addon@v2.1.0
         with:
           product-id: ${{ secrets.EDGE_PRODUCT_ID }}
           zip-path: novapass-*-chrome.zip
