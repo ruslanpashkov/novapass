@@ -2,7 +2,7 @@
 
 [![Chrome Web Store](https://img.shields.io/badge/Chrome-Available-green)](https://chrome.google.com/webstore/detail/jpooemhlkehmepkbcbjflhpnjgilellm)
 [![Firefox Add-ons](https://img.shields.io/badge/Firefox-Available-green)](https://addons.mozilla.org/en-US/firefox/addon/novapass)
-[![Edge Add-ons](https://img.shields.io/badge/Edge-Coming%20Soon-yellow)]()
+[![Edge Add-ons](https://img.shields.io/badge/Edge-Available-green)](https://microsoftedge.microsoft.com/addons/detail/ibaagiponackkmiicjhggcpdolodebgg)
 
 Transform your password management experience with NovaPass – a powerful cross-browser extension that combines security with simplicity. Generate strong, customizable passwords right from your browser toolbar.
 
@@ -43,7 +43,7 @@ NovaPass is available on multiple platforms:
 
 - [Chrome Web Store](https://chrome.google.com/webstore/detail/jpooemhlkehmepkbcbjflhpnjgilellm)
 - [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/novapass)
-- Edge Add-ons (Coming Soon)
+- [Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/ibaagiponackkmiicjhggcpdolodebgg)
 
 ## Contributing
 
