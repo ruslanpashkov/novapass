@@ -1,6 +1,5 @@
 import type { PasswordOptions, CharacterSet } from "../../types";
 
-import { ALLOWED_CHARACTERS } from "../../constants/characters";
 import { ErrorHandler } from "../../errors";
 
 /**
@@ -33,10 +32,7 @@ export class PasswordValidationService {
    * @readonly
    */
   private static readonly CHARACTER_RULES = new Map<CharacterSet, RegExp>([
-    [
-      "symbols",
-      new RegExp(`[${ALLOWED_CHARACTERS.symbols.replace(/[[\]\\]/g, "\\$&")}]`),
-    ],
+    ["symbols", /[!@#$%^&*]/],
     ["lowercase", /[a-z]/],
     ["uppercase", /[A-Z]/],
     ["numbers", /[0-9]/],
@@ -96,7 +92,7 @@ export class PasswordValidationService {
   public validatePasswordLength(options: PasswordOptions): void {
     const minLength = this.calculateMinimumLength(options);
 
-    if (minLength > options.length) {
+    if (minLength > options.length || !Number.isInteger(options.length)) {
       throw ErrorHandler.createError("INVALID_PASSWORD_LENGTH");
     }
   }

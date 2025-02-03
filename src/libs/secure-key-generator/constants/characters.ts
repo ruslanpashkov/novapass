@@ -22,9 +22,6 @@
  * ```
  */
 export const ALLOWED_CHARACTERS = {
-  /** Special characters for password complexity */
-  symbols: "!@#$%^&*()+-_={}[]|:;\"'/?.,><`~",
-
   /** Standard English lowercase letters */
   lowercase: "abcdefghijklmnopqrstuvwxyz",
 
@@ -33,4 +30,7 @@ export const ALLOWED_CHARACTERS = {
 
   /** Decimal digits */
   numbers: "0123456789",
+
+  /** Special characters for password complexity */
+  symbols: "!@#$%^&*",
 } as const;

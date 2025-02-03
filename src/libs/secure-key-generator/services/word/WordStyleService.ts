@@ -42,9 +42,6 @@ export class WordStyleService {
 
       case "lowercase":
         return word.toLowerCase();
-
-      default:
-        return word;
     }
   }
 }

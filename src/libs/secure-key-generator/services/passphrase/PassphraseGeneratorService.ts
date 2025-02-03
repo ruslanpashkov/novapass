@@ -124,7 +124,7 @@ export class PassphraseGeneratorService {
    * @private
    */
   private validateOptions(wordCount: number): void {
-    if (wordCount < 1) {
+    if (wordCount < 1 || !Number.isInteger(wordCount)) {
       throw ErrorHandler.createError("INVALID_WORD_COUNT");
     }
 
