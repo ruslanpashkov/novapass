@@ -6,7 +6,7 @@
  *
  * @example
  * ```typescript
- * throw new Error(errorMessages.NO_CHARACTER_SETS);
+ * throw new Error(errorMessages.MAX_ATTEMPTS_EXCEEDED);
  * ```
  */
 export const errorMessages = {
@@ -35,12 +35,6 @@ export const errorMessages = {
    * Could be too short or too long based on configuration
    */
   INVALID_PASSWORD_LENGTH: "Length must correlate with strict guidelines",
-
-  /**
-   * Thrown when no character sets are enabled for password generation
-   * At least one of: uppercase, lowercase, numbers, or symbols must be enabled
-   */
-  NO_CHARACTER_SETS: "At least one character set must be enabled",
 
   /**
    * Thrown when attempting to generate from an empty character pool
