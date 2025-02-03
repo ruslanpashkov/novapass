@@ -8,8 +8,8 @@ declare module "eslint-plugin-react-hooks" {
   };
 
   declare const rules: {
-    "rules-of-hooks": Rule.RuleModule;
     "exhaustive-deps": Rule.RuleModule;
+    "rules-of-hooks": Rule.RuleModule;
   };
 
   declare const plugin: {
