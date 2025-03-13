@@ -6,9 +6,6 @@
   "engines": {
     "node": "22"
   },
-  "overrides": {
-    "vite": "^5.0.0"
-  },
   "scripts": {
     "dev": "wxt",
     "build": "wxt build --mv3",
