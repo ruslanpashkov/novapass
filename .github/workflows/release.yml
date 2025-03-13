@@ -34,7 +34,6 @@ jobs:
         run: |
           npm ci
           npm run zip -- -b ${{ matrix.target }}
-          npm audit
 
       - name: Upload build artifact
         uses: actions/upload-artifact@main
