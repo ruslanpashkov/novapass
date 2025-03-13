@@ -1,5 +1,5 @@
 /**
- * EFF's Large Wordlist for Passphrases
+ * EFF's Large Wordlist for Passphrases (Modified)
  * Official wordlist from the Electronic Frontier Foundation designed for generating secure passphrases
  *
  * @see {@link https://www.eff.org/dice} - Official EFF Diceware page
@@ -16,6 +16,7 @@
  *   - No offensive or unsuitable words
  *   - No similar words that differ by only one or two letters
  * - Designed for use with the Diceware method of passphrase generation
+ * - **Modification:** All words containing the "-" character have been removed to prevent issues with password generation when passphrases are separated by "-" characters.
  *
  */
 export const WORDS = [
@@ -2027,7 +2028,6 @@ export const WORDS = [
   "drone",
   "drool",
   "droop",
-  "drop-down",
   "dropbox",
   "dropkick",
   "droplet",
@@ -2546,7 +2546,6 @@ export const WORDS = [
   "feel",
   "feisty",
   "feline",
-  "felt-tip",
   "feminine",
   "feminism",
   "feminist",
@@ -6658,7 +6657,6 @@ export const WORDS = [
   "synthetic",
   "syrup",
   "system",
-  "t-shirt",
   "tabasco",
   "tabby",
   "tableful",
