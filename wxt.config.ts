@@ -24,7 +24,6 @@ export default defineConfig({
     },
   }),
   modules: ["@wxt-dev/module-react", "@wxt-dev/i18n/module"],
-  extensionApi: "chrome",
   imports: false,
   srcDir: "src",
 });

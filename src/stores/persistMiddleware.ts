@@ -1,6 +1,6 @@
 import type { PersistStorage, StorageValue } from "zustand/middleware";
 
-import { storage } from "wxt/storage";
+import { storage } from "wxt/utils/storage";
 
 /**
  * Creates a typed storage adapter for Zustand persist middleware using WXT storage
