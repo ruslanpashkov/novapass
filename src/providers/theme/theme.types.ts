@@ -1,5 +1,6 @@
-import type { Theme } from "@/stores/theme";
 import type { ReactNode } from "react";
+
+import type { Theme } from "@/stores/theme";
 
 /**
  * Theme state and actions for managing application theme
