@@ -1,10 +1,11 @@
+import type { FC } from "react";
+
+import { i18n } from "#i18n";
+
 import type {
   PassphraseOptions as PassphraseOptionsType,
   WordStyle,
 } from "@/libs/secure-key-generator";
-import type { FC } from "react";
-
-import { i18n } from "#i18n";
 
 import { useFormHandlers } from "../hooks/useFormHandlers";
 import { WordCountSlider } from "./WordCountSlider";
