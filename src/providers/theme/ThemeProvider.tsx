@@ -1,7 +1,8 @@
 import { ThemeProvider as MaterialThemeProvider } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
-import { useDirectionStore } from "@/stores";
 import { type FC, useMemo } from "react";
+
+import { useDirectionStore } from "@/stores";
 import { useThemeStore } from "@/stores";
 
 import type { ThemeProviderProps } from "./theme.types";

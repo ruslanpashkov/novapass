@@ -1,9 +1,10 @@
-import type { Direction } from "@/stores/direction";
 import type { Options } from "@emotion/cache";
 
 import rtlPlugin from "stylis-plugin-rtl";
 import createCache from "@emotion/cache";
 import { prefixer } from "stylis";
+
+import type { Direction } from "@/stores/direction";
 
 /**
  * Creates an Emotion cache configuration with RTL support using stylis plugins

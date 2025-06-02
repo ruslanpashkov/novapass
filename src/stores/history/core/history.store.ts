@@ -1,8 +1,9 @@
+import { persist } from "zustand/middleware";
+import { create } from "zustand";
+
 import type { WithHydration } from "@/stores/types";
 
 import { HydrationService } from "@/stores/HydrationService";
-import { persist } from "zustand/middleware";
-import { create } from "zustand";
 
 import type { HistoryState, HistoryStore } from "./history.types";
 

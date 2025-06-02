@@ -1,7 +1,7 @@
-import type { PasswordOptions as PasswordOptionsType } from "@/libs/secure-key-generator";
-
 import { useMemo, type FC } from "react";
 import { i18n } from "#i18n";
+
+import type { PasswordOptions as PasswordOptionsType } from "@/libs/secure-key-generator";
 
 import { PasswordLengthSlider } from "./PasswordLengthSlider";
 import { CheckboxOptionGroup } from "./CheckboxOptionGroup";

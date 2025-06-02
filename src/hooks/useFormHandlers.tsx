@@ -1,3 +1,5 @@
+import { i18n } from "#i18n";
+
 import type {
   PassphraseOptions,
   PasswordOptions,
@@ -6,7 +8,6 @@ import type {
 import type { GenerationMode } from "@/stores/generator";
 
 import { useGeneratorStore, useAlertStore } from "@/stores";
-import { i18n } from "#i18n";
 
 /**
  * Represents the state and handlers for password/passphrase generation form
