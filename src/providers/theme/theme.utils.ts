@@ -1,8 +1,9 @@
 import type { Theme as MaterialTheme } from "@mui/material";
-import type { Direction } from "@/stores/direction";
-import type { Theme } from "@/stores/theme";
 
 import { createTheme } from "@mui/material";
+
+import type { Direction } from "@/stores/direction";
+import type { Theme } from "@/stores/theme";
 
 /**
  * Creates a Material-UI theme object based on the application's theme mode

@@ -1,9 +1,10 @@
-import type { Result } from "@/libs/password-strength";
-
 import { lightGreen, orange, yellow, green, red } from "@mui/material/colors";
-import { strengthChecker } from "@/libs/password-strength";
 import { useEffect, useState } from "react";
 import { i18n } from "#i18n";
+
+import type { Result } from "@/libs/password-strength";
+
+import { strengthChecker } from "@/libs/password-strength";
 
 /**
  * State interface for password strength analysis

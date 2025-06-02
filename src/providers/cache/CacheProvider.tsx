@@ -1,6 +1,7 @@
 import { CacheProvider as EmotionCacheProvider } from "@emotion/react";
-import { useDirectionStore } from "@/stores";
 import { type FC, useMemo } from "react";
+
+import { useDirectionStore } from "@/stores";
 
 import type { CacheProviderProps } from "./cache.types";
 
