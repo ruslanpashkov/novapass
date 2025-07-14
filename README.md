@@ -72,7 +72,7 @@ Created by [Ruslan Pashkov](https://github.com/ruslanpashkov)
 
 Have questions or suggestions? We'd love to hear from you!
 
-📧 hi@ruslanpashkov.com
+📧 <hi@ruslanpashkov.com>
 
 ---
 
