@@ -2,7 +2,7 @@
 
 ## Reporting a Vulnerability
 
-If you discover a security vulnerability in NovaPass, please report it by emailing hi@ruslanpashkov.com. Please do not create public GitHub issues for security vulnerabilities.
+If you discover a security vulnerability in NovaPass, please report it by emailing <hi@ruslanpashkov.com>. Please do not create public GitHub issues for security vulnerabilities.
 
 ## Security Features
 
