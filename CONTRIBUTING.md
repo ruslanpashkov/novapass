@@ -33,4 +33,4 @@ Thank you for your interest in contributing to NovaPass!
 
 ## Need Help?
 
-Feel free to reach out at hi@ruslanpashkov.com if you have any questions.
+Feel free to reach out at <hi@ruslanpashkov.com> if you have any questions.
