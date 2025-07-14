@@ -110,7 +110,7 @@ jobs:
           name: firefox
 
       - name: Publish to Firefox Add-ons
-        uses: wdzeng/firefox-addon@v1.1.2
+        uses: wdzeng/firefox-addon@v1.2.0
         with:
           addon-guid: ${{ secrets.FIREFOX_ADDON_GUID }}
           xpi-path: novapass-*-firefox.zip
