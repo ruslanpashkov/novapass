@@ -92,9 +92,9 @@ class PasswordOptionsCommand implements FormCommand<unknown> {
  * @class PasswordGenerationCommand
  * @implements {FormCommand<React.FormEvent<HTMLFormElement>>}
  */
-class PasswordGenerationCommand
-  implements FormCommand<React.FormEvent<HTMLFormElement>>
-{
+class PasswordGenerationCommand implements FormCommand<
+  React.FormEvent<HTMLFormElement>
+> {
   constructor(
     private createPassword: (mode: GenerationMode) => string,
     private setPassword: (password: string) => void,

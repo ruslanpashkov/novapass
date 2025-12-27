@@ -21,12 +21,9 @@ export default tseslint.config(
       "@typescript-eslint/no-restricted-imports": "off",
       "react/react-in-jsx-scope": "off",
     },
-    extends: [
-      js.configs.recommended,
-      ...tseslint.configs.recommended,
-      perfectionist.configs["recommended-line-length"],
-    ],
+    extends: [js.configs.recommended, tseslint.configs.recommended],
     plugins: {
+      perfectionist: perfectionist,
       "react-refresh": reactRefresh,
       "react-hooks": reactHooks,
       react,
